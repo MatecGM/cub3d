@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 01:20:22 by mbico             #+#    #+#             */
-/*   Updated: 2024/08/29 21:13:20 by mbico            ###   ########.fr       */
+/*   Updated: 2024/08/31 19:18:31 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,27 @@ t_coord	get_coord_next_wall(t_data *data, int sc_x)
 	t_coord	diag;
 	double	angle;
 	int		ray;
+	t_coord	wall;
 
 	diag = get_diagonal_direction(sc_x, data->rot);
-	angle = ((int)(sc_x * (FOV_X / (double)WIDTH * 100) + 36000 + (data->rot + 36000 - (FOV_X / 2 * 100) ) % 36000) % 36000 % 4500) / 100.0 * (PI / 180);
+	angle = ((int)(sc_x * (FOV_X / (double)WIDTH * 100) + 36000 + (data->rot + 36000 - (FOV_X / 2 * 100) ) % 36000) % 36000 % 9000) / 100.0 * (PI / 180);
+	ray = 0;
 	// if (sc_x == 0 || sc_x == WIDTH / 2)
 	// 	printf("rot %d = %f\n", sc_x, angle);
+	wall.x = fabs(data->cam.x) - floor(fabs(data->cam.x));
+	wall.y = round(data->cam.y + 0.5 * diag.y) + (data->cam.y) * - diag.y;
 	while (ray < RENDER_DISTANCE)
+	{
+		if ((diag.x && diag.y) || !(diag.x && diag.y))
+		{
+			
+		}
+		else
+		{
+			
+		}
+		ray ++;
+	}
 }
 
 void	put_wall(t_data *data)
