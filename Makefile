@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/08/25 08:26:45 by mbico            ###   ########.fr        #
+#    Updated: 2024/08/28 00:40:29 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ LIBMLX = minilibx-linux/libmlx.a
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
-	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBFT) $(LIBMLX) -I $(HEADER) -lXext -lX11 -lm -lz
+	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBFT) $(LIBMLX) -I $(HEADER) -lXext -lX11 -lm -lz -fPIE
 	@echo "$(GREEN)$(NAME) compilation successful !$(NC)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

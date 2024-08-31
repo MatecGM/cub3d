@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 23:49:38 by mbico             #+#    #+#             */
-/*   Updated: 2024/08/25 14:00:56 by mbico            ###   ########.fr       */
+/*   Updated: 2024/08/29 01:45:27 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define FOV_X 90
 # define FOV_Y 90
 
+# define PI 3.14159265359
+
 # define RENDER_DISTANCE 10
 
 typedef struct s_coord{
@@ -38,8 +40,9 @@ typedef struct s_coord{
 typedef struct s_data{
 	void	*mlx;
 	void	*win;
-	t_coord *wall;
+	int		**map;
 	t_coord	cam;
+	int		rot;
 }	t_data;
 
 typedef struct s_matrix
@@ -50,7 +53,7 @@ typedef struct s_matrix
 }		t_matrix;
 
 void	print_background(t_data *data);
-void	put_wall(t_data *data, t_coord *wall, t_coord cam);
+void	put_wall(t_data *data);
 int		ft_close(int keycode, t_data *data);
 int		round_mutiple(int nb, int mutiple);
 
