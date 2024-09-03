@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 23:49:38 by mbico             #+#    #+#             */
-/*   Updated: 2024/08/29 01:45:27 by mbico            ###   ########.fr       */
+/*   Updated: 2024/09/03 23:15:44 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # define PI 3.14159265359
 
-# define RENDER_DISTANCE 10
+# define RENDER_DISTANCE 1
 
 typedef struct s_coord{
 	double	x;
@@ -43,6 +43,8 @@ typedef struct s_data{
 	int		**map;
 	t_coord	cam;
 	int		rot;
+	int		map_width;
+	int		map_height;
 }	t_data;
 
 typedef struct s_matrix

@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:22:45 by mbico             #+#    #+#             */
-/*   Updated: 2024/08/31 16:38:47 by mbico            ###   ########.fr       */
+/*   Updated: 2024/09/03 23:15:49 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ int	ft_loop(void *param)
 	return (0);
 }
 
+int **dbltab_copy(int t[5][5], int a, int b)
+{
+	int **res = malloc(a * sizeof(int *));
+	
+	for (int i = 0; i < a; i++)
+	{
+		res[i] = malloc(b * sizeof(int));
+		for (int j = 0; j < b; j++)
+			res[i][j] = t[i][j];
+	}
+	return res;
+}
+
 int	main(void)
 {
 	t_data	data[1];
@@ -67,8 +80,10 @@ int	main(void)
 	};
 	t_coord	cam;
 	
-	cam.x = 1;
-	cam.y = 1;
+	data->map_height = 5;
+	data->map_width = 5;
+	cam.x = 0.5;
+	cam.y = 0.5;
 	
 	//xxxxx
 	//xP..x
@@ -129,7 +144,7 @@ int	main(void)
 	
 	// wall[17].x = -1; 
 	
-	data->map = map;
+	data->map = dbltab_copy(map, 5, 5);
 	data->cam = cam;
 	data->rot = 9000;
 	
