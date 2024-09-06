@@ -1,5 +1,18 @@
 {
 	"files.associations": {
-		"cube3d.h": "c"
+		"cube3d.h": "c",
+		"bit": "c",
+		"cmath": "c",
+		"compare": "c",
+		"concepts": "c",
+		"cstdarg": "c",
+		"cstdio": "c",
+		"cstdlib": "c",
+		"type_traits": "c",
+		"limits": "c",
+		"new": "c",
+		"*.tcc": "c",
+		"cstdint": "c",
+		"typeinfo": "c"
 	}
 }

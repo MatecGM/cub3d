@@ -6,12 +6,12 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/09/03 21:50:01 by mbico            ###   ########.fr        #
+#    Updated: 2024/09/06 01:36:33 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -O3 #-g -Wall -Wextra -Werror
+CFLAGS = -O3 -g #-Wall -Wextra -Werror
 NAME = cube3D
 HEADER = hdrs
 
@@ -21,6 +21,8 @@ OBJ_DIR = obj
 SRCS = main.c\
 		background.c\
 		wall.c\
+		raycasting.c\
+		utils/time_utils.c\
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 

@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:22:45 by mbico             #+#    #+#             */
-/*   Updated: 2024/09/03 23:15:49 by mbico            ###   ########.fr       */
+/*   Updated: 2024/09/06 03:03:22 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	ft_close(int keycode, t_data *data)
 {
 	print_background(data);
-	put_wall(data);
 	if (keycode == 65307)
 	{
 		mlx_destroy_window(data->mlx, data->win);
@@ -23,23 +22,45 @@ int	ft_close(int keycode, t_data *data)
 		free(data->mlx);
 		exit(EXIT_SUCCESS);
 	}
-	if (keycode == 119)
-		data->cam.x += 0.1;
-	else if (keycode == 115)
-		data->cam.x -= 0.1;
-	else if (keycode == 100)
-		data->cam.y += 0.1;
-	else if (keycode == 97)
-		data->cam.y -= 0.1;
 	else if (keycode == 114)
 	{
-		data->cam.x = 1;
-		data->cam.y = 1;
+		data->pos.x = 1;
+		data->pos.y = 1;
 	}
-	else if (keycode == 65361)
-		data->rot = (data->rot - 500 + 36000) % 36000;
-	else if (keycode == 65363)
-		data->rot = (data->rot + 500) % 36000;
+	if (keycode == 119)
+    {
+		data->pos.x += data->raycast->dir.x / 30;
+		data->pos.y += data->raycast->dir.y / 30;
+    }
+    //move backwards if no wall behind you
+    if (keycode == 115)
+    {
+		data->pos.x -= data->raycast->dir.x / 30;
+		data->pos.y -= data->raycast->dir.y / 30;
+    }
+	if (keycode == 100)
+    {
+      //both camera direction and camera plane must be rotated
+		double oldDirX = data->raycast->dir.x;
+		data->raycast->dir.x = data->raycast->dir.x * cos(-PI/80) - data->raycast->dir.y * sin(-PI/80);
+		data->raycast->dir.y = oldDirX * sin(-PI/80) + data->raycast->dir.y * cos(-PI/80);
+		double oldPlaneX = data->raycast->plane.x;
+		data->raycast->plane.x = data->raycast->plane.x * cos(-PI/80) - data->raycast->plane.y * sin(-PI/80);
+		data->raycast->plane.y = oldPlaneX * sin(-PI/80) + data->raycast->plane.y * cos(-PI/80);
+    }
+    //rotate to the left
+    else if (keycode == 97)
+    {
+      //both camera direction and camera plane must be rotated
+      double oldDirX = data->raycast->dir.x;
+      data->raycast->dir.x = data->raycast->dir.x * cos(PI/80) - data->raycast->dir.y * sin(PI/80);
+      data->raycast->dir.y = oldDirX * sin(PI/80) + data->raycast->dir.y * cos(PI/80);
+      double oldPlaneX = data->raycast->plane.x;
+      data->raycast->plane.x = data->raycast->plane.x * cos(PI/80) - data->raycast->plane.y * sin(PI/80);
+      data->raycast->plane.y = oldPlaneX * sin(PI/80) + data->raycast->plane.y * cos(PI/80);
+    }
+	printf("%f %f\n", data->pos.x, data->pos.y);
+	raycasting(data);
 	return (0);
 }
 
@@ -48,12 +69,12 @@ int	ft_loop(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	put_wall(data);
+	raycasting(data);
 	sleep(0);
 	return (0);
 }
 
-int **dbltab_copy(int t[5][5], int a, int b)
+int **dbltab_copy(int t[24][24], int a, int b)
 {
 	int **res = malloc(a * sizeof(int *));
 	
@@ -68,85 +89,58 @@ int **dbltab_copy(int t[5][5], int a, int b)
 
 int	main(void)
 {
-	t_data	data[1];
+	t_data		data[1];
+	t_raycast	raycast[1];
 
 //=====================TRUC DEGUEU================================
-	int	map[5][5] = {
-		{1,1,1,1,1},
-		{1,0,0,0,1},
-		{1,0,0,1,1},
-		{1,0,0,0,1},
-		{1,1,1,1,1}
-	};
-	t_coord	cam;
+	int	map[24][24] = {
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+};
+	t_coord	pos;
 	
-	data->map_height = 5;
-	data->map_width = 5;
-	cam.x = 0.5;
-	cam.y = 0.5;
+	data->map_height = 24;
+	data->map_width = 24;
+	pos.x = 1;
+	pos.y = 1;
 	
-	//xxxxx
-	//xP..x
-	//x..xx
-	//x...x
-	//xxxxx
-
-	// wall[0].x = 0; 
-	// wall[0].y = 0; 
+	t_coord	dir;
+	t_coord	plane;
 	
-	// wall[1].x = 1; 
-	// wall[1].y = 0;
-
-	// wall[2].x = 2; 
-	// wall[2].y = 0; 
+	dir.x = 1;
+	dir.y = 0;
+	plane.x = 0;
+	plane.y = 0.66;
 	
-	// wall[3].x = 3; 
-	// wall[3].y = 0; 
-	
-	// wall[4].x = 4; 
-	// wall[4].y = 0; 
-	
-	// wall[5].x = 0; 
-	// wall[5].y = 1; 
-	
-	// wall[6].x = 4; 
-	// wall[6].y = 1; 
-	
-	// wall[7].x = 0; 
-	// wall[7].y = 2; 
-	
-	// wall[8].x = 3; 
-	// wall[8].y = 2; 
-	
-	// wall[9].x = 4; 
-	// wall[9].y = 2; 
-	
-	// wall[10].x = 0; 
-	// wall[10].y = 3; 
-	
-	// wall[11].x = 4; 
-	// wall[11].y = 3; 
-	
-	// wall[12].x = 0; 
-	// wall[12].y = 4; 
-	
-	// wall[13].x = 1; 
-	// wall[13].y = 4; 
-	
-	// wall[14].x = 2; 
-	// wall[14].y = 4; 
-	
-	// wall[15].x = 3; 
-	// wall[15].y = 4; 
-	
-	// wall[16].x = 4; 
-	// wall[16].y = 4; 
-	
-	// wall[17].x = -1; 
-	
-	data->map = dbltab_copy(map, 5, 5);
-	data->cam = cam;
-	data->rot = 9000;
+	data->map = dbltab_copy(map, 24, 24);
+	data->pos = pos;
+	raycast->dir = dir;
+	raycast->plane = plane;
+	raycast->time = 0;
+	raycast->oldTime = 0;
+	data->raycast = raycast;
 	
 //================================================================
 
@@ -154,6 +148,7 @@ int	main(void)
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Hello world!");
 	print_background(data);
 	mlx_hook(data->win, 2, 1L<<0, ft_close, &data);
-	mlx_loop_hook(data->mlx, &ft_loop, data);
+	raycasting(data);
+	//mlx_loop_hook(data->mlx, &ft_loop, data);
 	mlx_loop(data->mlx);
 }
