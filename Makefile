@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/09/06 01:36:33 by mbico            ###   ########.fr        #
+#    Updated: 2024/09/11 19:28:34 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,40 +33,42 @@ PURPLE = \033[0;35m
 NC = \033[0m
 
 LIBFT = libft/libft.a
-LIBMLX = minilibx-linux/libmlx.a
+MLX = MacroLibX/libmlx.so
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
-	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBFT) $(LIBMLX) -I $(HEADER) -lXext -lX11 -lm -lz -fPIE
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBFT) $(LIBMLX) -I $(HEADER) -lSDL2 -lm
 	@echo "$(GREEN)$(NAME) compilation successful !$(NC)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	@echo "$(YELLOW)Compiling $(notdir $<)...$(NC)"
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER) -I ./libft -I ./minilibx-linux
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER) -I ./libft -I ./MacroLibX/includes
+
+$(MLX):
+	@echo "$(PURPLE)Compiling MacroLibX...$(NC)"
+	@make -C MacroLibX -j
 
 $(LIBFT):
 	@echo "$(PURPLE)Compiling libft...$(NC)"
 	@make -C libft -j -s
-
-$(LIBMLX):
-	@echo "$(PURPLE)Compiling libmlx...$(NC)"
-	@make -C minilibx-linux -j -s
 
 clean:
 	@echo "$(RED)Removing object...$(NC)"
 	@rm -rf $(OBJ_DIR)
 	@echo "$(RED)Removing libft object...$(NC)"
 	@make -C libft clean -s
-	@echo "$(RED)Removing libmlx object...$(NC)"
-	@make -C minilibx-linux clean -j -s
+	@echo "$(RED)Removing mlx object...$(NC)"
+	@make -C MacroLibX clean
 
 fclean: clean
 	@echo "$(RED)Removing $(NAME)...$(NC)"
 	@rm -f $(NAME)
 	@echo "$(RED)Removing libft.a...$(NC)"
 	@make -C libft fclean -s
+	@echo "$(RED)Removing libmlx.so...$(NC)"
+	@make -C MacroLibX fclean
 	
 re: fclean all
 

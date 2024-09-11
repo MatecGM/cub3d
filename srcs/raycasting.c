@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:50:22 by mbico             #+#    #+#             */
-/*   Updated: 2024/09/06 02:58:45 by mbico            ###   ########.fr       */
+/*   Updated: 2024/09/11 17:55:50 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ t_coord	dda(t_data *data, t_raycast *raycast)
 			raycast->map.y += raycast->step.y;
 			raycast->side = 1;
 		}
-		if (raycast->map.x + 1 >= data->map_width || raycast->map.x+ 1 < 0 || raycast->map.y+ 1 >= data->map_height || raycast->map.y+ 1 < 0 || data->map[raycast->map.y+ 1][raycast->map.x+ 1] > 0)
+		if (raycast->map.x + 1 >= data->map_width || raycast->map.x + 1 < 0 || raycast->map.y + 1 >= data->map_height || raycast->map.y + 1 < 0 || data->map[raycast->map.y+ 1][raycast->map.x+ 1] > 0)
 			raycast->hit = TRUE;
 	}
 	impact.x = (double)raycast->map.x;
@@ -152,13 +152,4 @@ void	raycasting(t_data *data)
 		
 		sc_x ++;
 	}
-	//timing for input and FPS counter
-	data->raycast->oldTime = data->raycast->time;
-	data->raycast->time = get_time_ms();
-	double frameTime = (data->raycast->time - data->raycast->oldTime) / 1000.0; //frameTime is the time this frame has taken, in seconds
-	//printf("%ffps\n", 1.0 / frameTime);
-	//print(1.0 / frameTime); //FPS counter
-	//speed modifiers
-	data->raycast->moveSpeed = frameTime * 5.0; //the constant value is in squares/second
-	data->raycast->rotSpeed = frameTime * 3.0; //the constant value is in radians/second
 }

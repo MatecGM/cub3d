@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 23:49:38 by mbico             #+#    #+#             */
-/*   Updated: 2024/09/05 23:33:47 by mbico            ###   ########.fr       */
+/*   Updated: 2024/09/11 19:29:44 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUBE3D_H
 
 # include "libft.h"
-# include "mlx.h"
+# include "../MacroLibX/includes/mlx.h"
 # include <stdio.h>
 # include <math.h>
 # include <sys/time.h>

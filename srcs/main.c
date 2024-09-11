@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:22:45 by mbico             #+#    #+#             */
-/*   Updated: 2024/09/06 03:03:22 by mbico            ###   ########.fr       */
+/*   Updated: 2024/09/11 19:30:09 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ int	ft_close(int keycode, t_data *data)
 	}
 	if (keycode == 119)
     {
-		data->pos.x += data->raycast->dir.x / 30;
-		data->pos.y += data->raycast->dir.y / 30;
+		data->pos.x += data->raycast->dir.x + data->raycast->plane.x;
+		data->pos.y += data->raycast->dir.y + data->raycast->plane.y;
     }
     //move backwards if no wall behind you
     if (keycode == 115)
     {
-		data->pos.x -= data->raycast->dir.x / 30;
-		data->pos.y -= data->raycast->dir.y / 30;
+		data->pos.x -= data->raycast->dir.x + data->raycast->plane.x;
+		data->pos.y -= data->raycast->dir.y + data->raycast->plane.y;                                                              
     }
-	if (keycode == 100)
+	if (keycode == 97)
     {
       //both camera direction and camera plane must be rotated
 		double oldDirX = data->raycast->dir.x;
@@ -49,7 +49,7 @@ int	ft_close(int keycode, t_data *data)
 		data->raycast->plane.y = oldPlaneX * sin(-PI/80) + data->raycast->plane.y * cos(-PI/80);
     }
     //rotate to the left
-    else if (keycode == 97)
+    else if (keycode == 100)
     {
       //both camera direction and camera plane must be rotated
       double oldDirX = data->raycast->dir.x;
@@ -59,7 +59,8 @@ int	ft_close(int keycode, t_data *data)
       data->raycast->plane.x = data->raycast->plane.x * cos(PI/80) - data->raycast->plane.y * sin(PI/80);
       data->raycast->plane.y = oldPlaneX * sin(PI/80) + data->raycast->plane.y * cos(PI/80);
     }
-	printf("%f %f\n", data->pos.x, data->pos.y);
+	printf("plane : %f %f\n", data->raycast->plane.x, data->raycast->plane.y);
+	printf("dir : %f %f\n\n", data->raycast->dir.x, data->raycast->dir.y);
 	raycasting(data);
 	return (0);
 }
