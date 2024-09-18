@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 21:22:45 by mbico             #+#    #+#             */
-/*   Updated: 2024/09/11 19:30:09 by mbico            ###   ########.fr       */
+/*   Updated: 2024/09/18 22:11:12 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,7 @@ int	main(void)
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Hello world!");
 	print_background(data);
+	
 	mlx_hook(data->win, 2, 1L<<0, ft_close, &data);
-	raycasting(data);
-	//mlx_loop_hook(data->mlx, &ft_loop, data);
-	mlx_loop(data->mlx);
+	mlx_loop_hook(data->mlx, &ft_close, &data);
 }
