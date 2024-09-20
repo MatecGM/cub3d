@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:50:22 by mbico             #+#    #+#             */
-/*   Updated: 2024/09/18 21:55:15 by mbico            ###   ########.fr       */
+/*   Updated: 2024/09/20 08:47:09 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	put_wall_col(t_data *data, int x, int size)
 	i = draw_start;
 	while (i < draw_end)
 	{
-		mlx_pixel_put(data->mlx, data->win, x, i, 0x000000FF);
+		mlx_set_image_pixel(data->mlx, data->img, x, i, 0xFF0000FF);
+		//mlx_pixel_put(data->mlx, data->win, x, i, 0x000000FF);
 		i++;
 	}
 }

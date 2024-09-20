@@ -57,6 +57,8 @@ SRCS = ft_bzero.c \
 		printf/ft_putnbr.c \
 		ft_power.c\
 		ft_absolute.c\
+		ft_isspace.c\
+		ft_freetab.c\
 
 OBJS = ${SRCS:.c=.o}
 

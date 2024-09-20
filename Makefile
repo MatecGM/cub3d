@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/09/11 19:28:34 by mbico            ###   ########.fr        #
+#    Updated: 2024/09/20 07:14:07 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ SRCS = main.c\
 		wall.c\
 		raycasting.c\
 		utils/time_utils.c\
+		parsing/parsing.c\
+		parsing/error_map.c\
+		parsing/tab_pars.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 

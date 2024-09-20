@@ -1,0 +1,97 @@
+[
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "srcs/main.c",
+   "-o",
+   "obj/main.o",
+   "-I",
+   "hdrs",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "srcs/main.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "srcs/background.c",
+   "-o",
+   "obj/background.o",
+   "-I",
+   "hdrs",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "srcs/background.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "srcs/wall.c",
+   "-o",
+   "obj/wall.o",
+   "-I",
+   "hdrs",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "srcs/wall.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "srcs/raycasting.c",
+   "-o",
+   "obj/raycasting.o",
+   "-I",
+   "hdrs",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "srcs/raycasting.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "srcs/utils/time_utils.c",
+   "-o",
+   "obj/utils/time_utils.o",
+   "-I",
+   "hdrs",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "srcs/utils/time_utils.c"
+ }
+]
