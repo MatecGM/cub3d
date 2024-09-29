@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/24 23:49:38 by mbico             #+#    #+#             */
-/*   Updated: 2024/09/20 07:23:17 by mbico            ###   ########.fr       */
+/*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
+/*   Updated: 2024/09/29 11:42:12 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,9 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
-# include <sys/time.h>
 
 # define WIDTH 1280
 # define HEIGHT 720
-
-# define MESH_WIDTH 100
-# define MESH_HEIGHT 100
-
-# define FOV_X 90
-# define FOV_Y 90
 
 # define PI 3.14159265359
 
@@ -45,40 +38,11 @@ typedef struct s_dcoord
 	int			y;
 }				t_dcoord;
 
-typedef struct s_raycast
+typedef struct s_rc
 {
-	t_coord		dir;
-	t_coord		plane;
-	t_coord		ray_dir;
-	t_dcoord	map;
-	t_coord		side_dist;
-	t_coord		delta_dist;
-	double		perp_wall_dist;
-	t_dcoord	step;
-	t_bool		hit;
-	int			side;
-
-	double		time;
-	double		oldTime;
-	double		moveSpeed;
-	double		rotSpeed;
-
-}				t_raycast;
-
-typedef struct s_img_data
-{
-	void		*mlx_img;
-	int			width;
-	int			height;
-}				t_img_data;
-
-typedef struct s_txtr
-{
-	t_img_data	nwall;
-	t_img_data	swall;
-	t_img_data	wwall;
-	t_img_data	ewall;
-}				t_txtr;
+	double	ax;
+	double	ay;
+}		t_rc;
 
 typedef struct s_data
 {
@@ -87,25 +51,15 @@ typedef struct s_data
 	void		*img;
 	t_bool		**map;
 	t_coord		pos;
+	double		dir;
 	int			map_width;
 	int			map_height;
-	t_txtr		txtr;
-	t_raycast	*raycast;
+	t_rc		rc;
 }				t_data;
 
-typedef struct s_matrix
-{
-	int			row;
-	int			col;
-	double		**content;
-}				t_matrix;
-
-void			print_background(t_data *data);
-void			put_wall(t_data *data);
-int				ft_close(int keycode, void *d);
-int				round_mutiple(int nb, int mutiple);
-void			raycasting(t_data *data);
-unsigned int	get_time_ms(void);
+int				ft_keydown(int kc, void *d);
+void			displaying(t_data *data);
+void			print_line(t_data *data, t_dcoord p1, t_dcoord p2, int color);
 
 int				map_write_check(char **map, int x, int y);
 int				verif_wall(char **map, int x, int y);

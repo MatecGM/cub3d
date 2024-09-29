@@ -6,23 +6,22 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/09/20 07:14:07 by mbico            ###   ########.fr        #
+#    Updated: 2024/09/29 11:47:35 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -O3 -g #-Wall -Wextra -Werror
 NAME = cube3D
-HEADER = hdrs
+HEADER = hdr
 
-SRC_DIR = srcs
+SRC_DIR = src
 OBJ_DIR = obj
 
 SRCS = main.c\
-		background.c\
-		wall.c\
-		raycasting.c\
-		utils/time_utils.c\
+	   raycast.c\
+	   utils/print_line.c\
+	   input/ft_keydown.c\
 		parsing/parsing.c\
 		parsing/error_map.c\
 		parsing/tab_pars.c

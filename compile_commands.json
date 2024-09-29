@@ -6,17 +6,17 @@
    "-O3",
    "-g",
    "-c",
-   "srcs/main.c",
+   "src/main.c",
    "-o",
    "obj/main.o",
    "-I",
-   "hdrs",
+   "hdr",
    "-I",
    "./libft",
    "-I",
    "./MacroLibX/includes"
   ],
-  "file": "srcs/main.c"
+  "file": "src/main.c"
  },
  {
   "directory": "/nfs/homes/mbico/Desktop/cub3d",
@@ -25,17 +25,17 @@
    "-O3",
    "-g",
    "-c",
-   "srcs/background.c",
+   "src/input/ft_keydown.c",
    "-o",
-   "obj/background.o",
+   "obj/input/ft_keydown.o",
    "-I",
-   "hdrs",
+   "hdr",
    "-I",
    "./libft",
    "-I",
    "./MacroLibX/includes"
   ],
-  "file": "srcs/background.c"
+  "file": "src/input/ft_keydown.c"
  },
  {
   "directory": "/nfs/homes/mbico/Desktop/cub3d",
@@ -44,17 +44,17 @@
    "-O3",
    "-g",
    "-c",
-   "srcs/wall.c",
+   "src/parsing/parsing.c",
    "-o",
-   "obj/wall.o",
+   "obj/parsing/parsing.o",
    "-I",
-   "hdrs",
+   "hdr",
    "-I",
    "./libft",
    "-I",
    "./MacroLibX/includes"
   ],
-  "file": "srcs/wall.c"
+  "file": "src/parsing/parsing.c"
  },
  {
   "directory": "/nfs/homes/mbico/Desktop/cub3d",
@@ -63,17 +63,17 @@
    "-O3",
    "-g",
    "-c",
-   "srcs/raycasting.c",
+   "src/parsing/error_map.c",
    "-o",
-   "obj/raycasting.o",
+   "obj/parsing/error_map.o",
    "-I",
-   "hdrs",
+   "hdr",
    "-I",
    "./libft",
    "-I",
    "./MacroLibX/includes"
   ],
-  "file": "srcs/raycasting.c"
+  "file": "src/parsing/error_map.c"
  },
  {
   "directory": "/nfs/homes/mbico/Desktop/cub3d",
@@ -82,16 +82,16 @@
    "-O3",
    "-g",
    "-c",
-   "srcs/utils/time_utils.c",
+   "src/parsing/tab_pars.c",
    "-o",
-   "obj/utils/time_utils.o",
+   "obj/parsing/tab_pars.o",
    "-I",
-   "hdrs",
+   "hdr",
    "-I",
    "./libft",
    "-I",
    "./MacroLibX/includes"
   ],
-  "file": "srcs/utils/time_utils.c"
+  "file": "src/parsing/tab_pars.c"
  }
 ]
