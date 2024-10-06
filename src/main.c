@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:34:46 by mbico             #+#    #+#             */
-/*   Updated: 2024/09/29 11:50:22 by mbico            ###   ########.fr       */
+/*   Updated: 2024/10/07 00:14:28 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,30 @@ void	print_player(t_data *data)
 	x = data->pos.x * (WIDTH / (double)data->map_width);
 	y = data->pos.y * (HEIGHT / (double)data->map_height);
 	i = y - 10;
-	while (i < y +10)
+	while (i <= y +10)
 	{
 		j = x - 10;
-		while (j < x + 10)
+		while (j <= x + 10)
 		{
 			mlx_set_image_pixel(data->mlx, data->img, j, i, 0xFF0000FF);
 			j ++;
 		}
 		i ++;
 	}
+
 	t_dcoord	p1;
 	t_dcoord	p2;
 
 	p1.x = x;
 	p1.y = y;
-	p2.x = x + data->rc.ax * 50;
-	p2.y = y + data->rc.ay * 50;
+	p2.x = x + (data->rc.ax) * (WIDTH / (double)data->map_width);
+	p2.y = y + (data->rc.ay) * (HEIGHT / (double)data->map_height);
 	print_line(data, p1, p2, 0xFF0000FF);
+	t_coord p3 = get_diag_dir(data);
+	p2.x = p3.x * (WIDTH / (double)data->map_width);
+	p2.y = p3.y * (HEIGHT / (double)data->map_height);
+	print_line(data, p1, p2, 0xFF000000);
+
 }
 
 void	displaying(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/09/29 11:42:12 by mbico            ###   ########.fr       */
+/*   Updated: 2024/10/07 00:11:37 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_data
 int				ft_keydown(int kc, void *d);
 void			displaying(t_data *data);
 void			print_line(t_data *data, t_dcoord p1, t_dcoord p2, int color);
+t_coord			get_diag_dir(t_data *data);
 
 int				map_write_check(char **map, int x, int y);
 int				verif_wall(char **map, int x, int y);

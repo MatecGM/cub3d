@@ -40,7 +40,7 @@ MLX = MacroLibX/libmlx.so
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBFT) $(LIBMLX) -I $(HEADER) -lSDL2 -lm
+	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBFT) $(MLX) -I $(HEADER) -lSDL2 -lm
 	@echo "$(GREEN)$(NAME) compilation successful !$(NC)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
