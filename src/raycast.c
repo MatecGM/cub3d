@@ -6,14 +6,21 @@
 /*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:29:17 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/07 00:43:57 by mbico            ###   ########.fr       */
+/*   Updated: 2024/10/09 01:41:07 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 #include <math.h>
 
-t_coord	get_diag_dir(t_data *data)
+t_bool	check_approx(double nb1, double nb2, int approx)
+{
+	if (floor(nb1 * approx) == floor(nb2 * approx))
+		return (TRUE);
+	return (FALSE);
+}
+
+t_coord	get_first_wall_x(t_data *data, double dir)
 {
 	double	ry;
 	double	rx;
@@ -21,31 +28,30 @@ t_coord	get_diag_dir(t_data *data)
 	double	xo;
 
 	int	dof = 0;
-	double atan = -1/tan(data->dir);
+	double atan = -1/tan(dir);
 	if (data->dir > PI)
 	{
 		ry = (int)data->pos.y;
 		rx = (data->pos.y - ry) * atan + data->pos.x;
 		yo = -1;
-		xo = -yo / atan;
+		xo = yo/tan(dir);
 	}
 	if (data->dir < PI)
 	{
 		ry = (int)data->pos.y + 1;
 		rx = (data->pos.y - ry) * atan + data->pos.x;
 		yo = 1;
-		xo = -yo / atan;
+		xo = yo/tan(dir);	
 	}
-	if (((int)(data->dir*1000)) / 1000.0 == 0.0 || ((int)(data->dir*1000))  == ((int)(PI*100000)) / 100000)
+	if (check_approx(dir, 0, 1000000) || check_approx(dir, PI, 1000000))
 	{
-		rx = 0;//data->pos.x;
-		ry = 0;//data->pos.y;
-		printf("hit\n");
+		rx = data->pos.x;
+		ry = data->pos.y;
 		dof = 8;
 	}
 	while (dof < 8)
 	{
-		if (rx < data->map_width && rx >= 0 && ry < data->map_height && ry > 0 && data->map[(int)ry][(int)rx])
+		if (rx < data->map_width && rx >= 0 && ry < data->map_height && ry > 0 && (data->map[(int)ry - (yo < 0)][(int)rx] ))
 			dof = 8;
 		else
 		{
@@ -57,8 +63,69 @@ t_coord	get_diag_dir(t_data *data)
 	t_coord p;
 	p.x = rx;
 	p.y = ry;
-	printf("%f %f et %f\n", rx, ry, data->dir);
 	return (p);
 
 }
+
+t_coord	get_first_wall_y(t_data *data, double dir)
+{
+	double	ry;
+	double	rx;
+	double	yo;
+	double	xo;
+
+	int	dof = 0;
+	double atan = -tan(dir);
+	if (dir > PI/2 || dir < 3 * PI / 2)
+	{
+		rx = (int)data->pos.x;
+		ry = (data->pos.x - rx) * atan + data->pos.y;
+		xo = -1;
+		yo = -xo/tan(dir - PI / 2);
+	}
+	if (data->dir < PI / 2.0 || data->dir > 3 * PI / 2.0)
+	{
+		rx = (int)data->pos.x + 1;
+		ry = (data->pos.x - rx) * atan + data->pos.y;
+		xo = 1;
+		yo = -xo/tan(dir - PI / 2);	
+	}
+	if (check_approx(dir, PI / 2.0, 1000000) || check_approx(dir, 3 * PI / 2.0, 1000000))
+	{
+		rx = data->pos.x;
+		ry = data->pos.y;
+		dof = 8;
+	}
+	while (dof < 8)
+	{
+		if (rx < data->map_width && rx >= 0 && ry < data->map_height && ry > 0 && (data->map[(int)ry][(int)rx - (xo < 0)] ))
+			dof = 8;
+		else
+		{
+			rx += xo;
+			ry += yo;
+			dof += 1;
+		}
+	}
+	t_coord p;
+	p.x = rx;
+	p.y = ry;
+	return (p);
+}
+
+t_coord	get_first_wall(t_data *data, double dir)
+{
+	t_coord	dist;
+	t_coord	px;
+	t_coord	py;
+
+	px = get_first_wall_x(data, dir);
+	py = get_first_wall_y(data, dir);
+	dist.x = pow(px.x - data->pos.x, 2) + pow(px.y - data->pos.y, 2);
+	dist.y = pow(py.x - data->pos.x, 2) + pow(py.y - data->pos.y, 2);
+	if ((dist.x > dist.y && !check_approx(dist.y, 0.0, 1000000)) || check_approx(dist.x, 0.0, 1000000))
+		return (py);
+	return (px);
+}
+
 

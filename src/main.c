@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:34:46 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/07 00:14:28 by mbico            ###   ########.fr       */
+/*   Updated: 2024/10/09 01:44:33 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	print_map(t_data *data)
 		{
 			if (data->map[y / (HEIGHT / data->map_height)][x / (WIDTH / data->map_width)])
 				mlx_set_image_pixel(data->mlx, data->img, x, y, 0xFFFF0000);
+			if (y % (HEIGHT / data->map_height) == 0 || x % (WIDTH / data->map_width) == 0)
+				mlx_set_image_pixel(data->mlx, data->img, x, y, 0xFF000000);
 			x ++;
 		}
 		y ++;
@@ -77,12 +79,22 @@ void	print_player(t_data *data)
 	p1.y = y;
 	p2.x = x + (data->rc.ax) * (WIDTH / (double)data->map_width);
 	p2.y = y + (data->rc.ay) * (HEIGHT / (double)data->map_height);
-	print_line(data, p1, p2, 0xFF0000FF);
-	t_coord p3 = get_diag_dir(data);
-	p2.x = p3.x * (WIDTH / (double)data->map_width);
-	p2.y = p3.y * (HEIGHT / (double)data->map_height);
-	print_line(data, p1, p2, 0xFF000000);
-
+	//print_line(data, p1, p2, 0xFF0000FF);
+	int	k = 0;
+	while (k < WIDTH)
+	{
+		double	dir;
+		dir = (data->dir - PI / 4.0) + ((PI / 2.0) / (double)WIDTH * k);
+		if (dir < 0)
+			dir += 2 * PI;
+		else if (dir >= PI * 2)
+			dir -= 2 * PI;
+		t_coord p3 = get_first_wall(data, dir);
+		p2.x = p3.x * (WIDTH / (double)data->map_width);
+		p2.y = p3.y * (HEIGHT / (double)data->map_height);
+		print_line(data, p1, p2, 0xFF000000);
+		k ++;
+	}
 }
 
 void	displaying(t_data *data)
