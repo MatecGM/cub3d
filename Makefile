@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/09/29 11:47:35 by mbico            ###   ########.fr        #
+#    Updated: 2024/10/11 03:58:03 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ OBJ_DIR = obj
 
 SRCS = main.c\
 	   raycast.c\
+	   display.c\
 	   utils/print_line.c\
 	   input/ft_keydown.c\
 		parsing/parsing.c\

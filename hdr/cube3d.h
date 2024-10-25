@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/09 01:30:44 by mbico            ###   ########.fr       */
+/*   Updated: 2024/10/11 04:05:52 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void			print_line(t_data *data, t_dcoord p1, t_dcoord p2, int color);
 t_coord			get_first_wall_x(t_data *data, double dir);
 t_coord			get_first_wall_y(t_data *data, double dir);
 t_coord			get_first_wall(t_data *data, double dir);
+int				get_wall_size(t_coord pos, t_coord hit);
+void			display_wall(t_data *data, int x, int size);
 
 int				map_write_check(char **map, int x, int y);
 int				verif_wall(char **map, int x, int y);

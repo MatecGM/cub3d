@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:34:46 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/09 01:44:33 by mbico            ###   ########.fr       */
+/*   Updated: 2024/10/12 20:17:58 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,6 @@ void	print_player(t_data *data)
 
 	p1.x = x;
 	p1.y = y;
-	p2.x = x + (data->rc.ax) * (WIDTH / (double)data->map_width);
-	p2.y = y + (data->rc.ay) * (HEIGHT / (double)data->map_height);
-	//print_line(data, p1, p2, 0xFF0000FF);
 	int	k = 0;
 	while (k < WIDTH)
 	{
@@ -92,16 +89,40 @@ void	print_player(t_data *data)
 		t_coord p3 = get_first_wall(data, dir);
 		p2.x = p3.x * (WIDTH / (double)data->map_width);
 		p2.y = p3.y * (HEIGHT / (double)data->map_height);
-		print_line(data, p1, p2, 0xFF000000);
+		print_line(data, p1, p2, 0xFF6666FF);
 		k ++;
 	}
+	p2.x = x + (data->rc.ax) * (WIDTH / (double)data->map_width);
+	p2.y = y + (data->rc.ay) * (HEIGHT / (double)data->map_height);
+	print_line(data, p1, p2, 0xFF0000FF);
+}
+
+void	display_raycast(t_data *data)
+{
+	int	k = 1;
+	int	size;
+	while (k < WIDTH)
+	{
+		double	dir;
+		dir = (data->dir - PI / 4.0) + ((PI / 2.0) / (double)WIDTH * k);
+		if (dir < 0)
+			dir += 2 * PI;
+		else if (dir >= PI * 2)
+			dir -= 2 * PI;
+		t_coord p3 = get_first_wall(data, dir);
+		int	size = get_wall_size(data->pos, p3);
+		display_wall(data, k, size);
+		k ++;
+	}
+	
 }
 
 void	displaying(t_data *data)
 {
 	display_clear(data);
-	print_map(data);
-	print_player(data);
+	display_raycast(data);
+	//print_map(data);
+	//print_player(data);
 	
 }
 

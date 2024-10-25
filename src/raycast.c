@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:29:17 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/09 01:41:07 by mbico            ###   ########.fr       */
+/*   Updated: 2024/10/11 02:32:50 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ t_coord	get_first_wall_x(t_data *data, double dir)
 
 	int	dof = 0;
 	double atan = -1/tan(dir);
-	if (data->dir > PI)
+	if (dir > PI)
 	{
 		ry = (int)data->pos.y;
 		rx = (data->pos.y - ry) * atan + data->pos.x;
 		yo = -1;
 		xo = yo/tan(dir);
 	}
-	if (data->dir < PI)
+	if (dir < PI)
 	{
 		ry = (int)data->pos.y + 1;
 		rx = (data->pos.y - ry) * atan + data->pos.x;
@@ -83,7 +83,7 @@ t_coord	get_first_wall_y(t_data *data, double dir)
 		xo = -1;
 		yo = -xo/tan(dir - PI / 2);
 	}
-	if (data->dir < PI / 2.0 || data->dir > 3 * PI / 2.0)
+	if (dir < PI / 2.0 || dir > 3 * PI / 2.0)
 	{
 		rx = (int)data->pos.x + 1;
 		ry = (data->pos.x - rx) * atan + data->pos.y;
