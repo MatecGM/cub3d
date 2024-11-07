@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:26:57 by mbico             #+#    #+#             */
-/*   Updated: 2024/09/20 07:30:22 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/07 23:54:23 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ double	ft_power(double nb, int power);
 double	ft_absolute(double nb);
 int		ft_isspace(char c);
 void	ft_freetab(void **tab, int y);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

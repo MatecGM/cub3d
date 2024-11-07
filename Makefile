@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/10/11 03:58:03 by mbico            ###   ########.fr        #
+#    Updated: 2024/11/07 23:52:09 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,20 @@ OBJ_DIR = obj
 
 SRCS = main.c\
 	   raycast.c\
-	   display.c\
+	   display/display_mm.c\
+	   display/display_rc.c\
+	   display/display_utils.c\
+	   utils/check_approx.c\
 	   utils/print_line.c\
 	   input/ft_keydown.c\
+		parsing/fonction.c\
 		parsing/parsing.c\
+		parsing/parsing_utils.c\
 		parsing/error_map.c\
-		parsing/tab_pars.c
+		parsing/error_id.c\
+		parsing/tab_pars.c\
+		parsing/utils/parsing_utils1.c\
+		parsing/utils/parsing_utils2.c\
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 

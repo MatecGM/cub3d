@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:29:17 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/11 02:32:50 by mbico            ###   ########.fr       */
+/*   Updated: 2024/10/30 19:21:43 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 #include <math.h>
-
-t_bool	check_approx(double nb1, double nb2, int approx)
-{
-	if (floor(nb1 * approx) == floor(nb2 * approx))
-		return (TRUE);
-	return (FALSE);
-}
 
 t_coord	get_first_wall_x(t_data *data, double dir)
 {

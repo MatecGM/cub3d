@@ -59,6 +59,7 @@ SRCS = ft_bzero.c \
 		ft_absolute.c\
 		ft_isspace.c\
 		ft_freetab.c\
+		ft_strcmp.c\
 
 OBJS = ${SRCS:.c=.o}
 

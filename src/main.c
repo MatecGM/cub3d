@@ -3,127 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:34:46 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/12 20:17:58 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/07 22:16:15 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include <cube3d.h>
-
-void	display_clear(t_data *data)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while(y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			mlx_set_image_pixel(data->mlx, data->img, x, y, 0xEEEEEEFF);
-			x ++;
-		}
-		y ++;
-	} 
-}
-
-void	print_map(t_data *data)
-{
-	int y;
-	int x;
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			if (data->map[y / (HEIGHT / data->map_height)][x / (WIDTH / data->map_width)])
-				mlx_set_image_pixel(data->mlx, data->img, x, y, 0xFFFF0000);
-			if (y % (HEIGHT / data->map_height) == 0 || x % (WIDTH / data->map_width) == 0)
-				mlx_set_image_pixel(data->mlx, data->img, x, y, 0xFF000000);
-			x ++;
-		}
-		y ++;
-	}
-}
-
-void	print_player(t_data *data)
-{
-	int	x;
-	int	y;
-	int	i;
-	int j;
-
-	x = data->pos.x * (WIDTH / (double)data->map_width);
-	y = data->pos.y * (HEIGHT / (double)data->map_height);
-	i = y - 10;
-	while (i <= y +10)
-	{
-		j = x - 10;
-		while (j <= x + 10)
-		{
-			mlx_set_image_pixel(data->mlx, data->img, j, i, 0xFF0000FF);
-			j ++;
-		}
-		i ++;
-	}
-
-	t_dcoord	p1;
-	t_dcoord	p2;
-
-	p1.x = x;
-	p1.y = y;
-	int	k = 0;
-	while (k < WIDTH)
-	{
-		double	dir;
-		dir = (data->dir - PI / 4.0) + ((PI / 2.0) / (double)WIDTH * k);
-		if (dir < 0)
-			dir += 2 * PI;
-		else if (dir >= PI * 2)
-			dir -= 2 * PI;
-		t_coord p3 = get_first_wall(data, dir);
-		p2.x = p3.x * (WIDTH / (double)data->map_width);
-		p2.y = p3.y * (HEIGHT / (double)data->map_height);
-		print_line(data, p1, p2, 0xFF6666FF);
-		k ++;
-	}
-	p2.x = x + (data->rc.ax) * (WIDTH / (double)data->map_width);
-	p2.y = y + (data->rc.ay) * (HEIGHT / (double)data->map_height);
-	print_line(data, p1, p2, 0xFF0000FF);
-}
-
-void	display_raycast(t_data *data)
-{
-	int	k = 1;
-	int	size;
-	while (k < WIDTH)
-	{
-		double	dir;
-		dir = (data->dir - PI / 4.0) + ((PI / 2.0) / (double)WIDTH * k);
-		if (dir < 0)
-			dir += 2 * PI;
-		else if (dir >= PI * 2)
-			dir -= 2 * PI;
-		t_coord p3 = get_first_wall(data, dir);
-		int	size = get_wall_size(data->pos, p3);
-		display_wall(data, k, size);
-		k ++;
-	}
-	
-}
 
 void	displaying(t_data *data)
 {
 	display_clear(data);
-	display_raycast(data);
-	//print_map(data);
-	//print_player(data);
-	
+	display_rc(data);
+	//display_map_mm(data);
+	//display_player_mm(data);
+}
+
+int	cube3d(void *d)
+{
+	t_data *data;
+
+	data = (t_data *) d;
+	key_action(data);
+	displaying(data);
 }
 
 int	main(void)
@@ -139,13 +42,16 @@ int	main(void)
 	data->map = parsing("maps/test_square.cub");
 	data->pos = pos;
 	data->dir = PI/2;
+	data->input = 0;
 //================================================================
 
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cube3D");
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	mlx_on_event(data->mlx, data->win, 	MLX_KEYDOWN, ft_keydown, data);
+	mlx_on_event(data->mlx, data->win, 	MLX_KEYDOWN, keydown, data);
+	mlx_on_event(data->mlx, data->win, 	MLX_KEYUP, keyup, data);
+	mlx_loop_hook(data->mlx, cube3d, data);
 	displaying(data);
 	mlx_loop(data->mlx);
 }

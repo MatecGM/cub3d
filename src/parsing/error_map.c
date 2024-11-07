@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   error_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 13:25:55 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/09/20 07:24:49 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/07 22:40:53 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cube3d.h"
+#include <parsing.h>
 
-int	map_write_check(char **map, int x, int y)
+int	map_write_check(char **map, int x, int y, int limit)
 {
 	int	count;
 
 	count = 0;
-	while (map[y][0] == '\n')
-		y++;
-	while (map[y])
+	while (limit)
 	{
 		x = 0;
 		while (map[y][x])
@@ -35,35 +33,50 @@ int	map_write_check(char **map, int x, int y)
 			x++;
 		}
 		y++;
+		limit--;
 	}
 	if (count == 0 || count > 1)
 		return (printf("Error\nCharacter\n"));
 	return (0);
 }
 
-int find_wall(char **map, int x, int y, int find_nb)
+int	verif_wall_bis(char **map, int y, int x, int nb)
 {
-	char	c;
-
-	c = map[y][x];
-	if (c == '0'|| c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	while (map[y][x] && map[y][x] != '\n')
 	{
-		if (find_nb == 1 && c != '1')
-			return (1);
-		return (2);
+		if (map[y][x] != '1' && map[y][x] != ' ')
+			return (printf("Error\nMissing Wall\n"));
+		x++;
 	}
-	return (0);	
+	if (nb == 1)
+	{
+		y++;
+		while (map[y])
+		{
+			x = 0;
+			while (map[y][x])
+			{
+				if (!ft_is_space(map[y][x]))
+					return (printf("Error\nMap Invalid\n"));
+				x++;
+			}
+			y++;
+		}
+	}
+	return (0);
 }
 
-int verif_wall(char **map, int x, int y)
+int	verif_wall(char **map, int x, int y, int limit)
 {
-	while (map[y][0] == '\n')
-		y++;
-	while (map[y])
+	if (verif_wall_bis(map, y, 0, 0) != 0)
+		return (1);
+	y++;
+	while (limit)
 	{
-		x = 0;
 		while (map[y][x])
 		{
+			if (find_wall(map, 0, y, 1) == 1)
+				return (printf("Error\nMissing Wall\n"));
 			if (find_wall(map, x, y, 1) == 1)
 			{
 				if (find_wall(map, x, y + 1, 0) == 0 || \
@@ -74,88 +87,53 @@ int verif_wall(char **map, int x, int y)
 			}
 			x++;
 		}
+		x = 0;
+		limit--;
 		y++;
 	}
+	return (verif_wall_bis(map, y, 0, 1));
+}
+
+int	verif_cub(char *str)
+{
+	if (ft_strlen(str) <= 4)
+		return (printf("Error\n.cub\n"));
+	if (ft_strcmp(ft_strrchr(str, '.'), ".cub") != 0)
+		return (printf("Error\n.cub\n"));
 	return (0);
 }
 
-// int	verif_id(char **map, int x, int y)
-// {
-// 	char **texture;
-// 	int	stop;
-// 	int test = 0;
-
-// 	stop = find_map(map, 0, 0);
-// 	texture = ft_calloc(11, sizeof(char *));
-// 	while(y != stop)
-// 	{
-// 		x = 0;
-// 		if(map[y][0] == '\n')
-// 			y++;
-// 		while(ft_is_space(map[y][x]))
-// 			x++;
-// 		if (x < (int)ft_strlen(map[y]))
-// 		{
-// 			x += 2;
-// 			while(ft_is_space(map[y][x]))
-// 				x++;
-// 			texture[test] = ft_strdup(map[y] + x);
-// 			test++;
-// 		}
-// 		y++;
-// 	}
-// 	return (0);
-// }
-
-int verif_nb_id(char **map, int x, int y, int nb)
+int	verif_data(char **map, int y, char *name)
 {
-	int count = 0;
-
-	while(map[y][0] == '\n')
-		y++;
-	while(ft_isspace(map[y][x]))
-		x++;
-	while(map[y][x] != ' ' && x < (int)ft_strlen(map[y]))
-	{
-		count++;
-		x++;
-	}
-	if (count > 2)
-		return (printf("Error\nTexture ID\n"));
-	if (nb != 5)
-		return (verif_nb_id(map, 0, y + 1, nb + 1));
-	return (0);
-}
-
-int	verif_data(char **map, int y)
-{
-	int count_data;
-	int x;
+	int	count_data;
+	int	x;
 
 	count_data = 0;
-	while(map[y] && count_data != 6)
+	if (verif_cub(name) != 0)
+		return (1);
+	while (map[y] && count_data != 6)
 	{
 		x = 0;
-		if (ft_isspace(map[y][x]))
+		if (ft_is_space(map[y][x]))
 		{
 			while (map[y][x] == ' ')
 				x++;
 		}
 		if (map[y][x] == '1')
-			break;
+			break ;
 		else if (map[y][x] != '\n')
 			count_data++;
 		y++;
 	}
 	if (count_data != 6)
+		return (printf("Error\nMissing Id\n"));
+	if (find_map(map, 0, 0) == 0)
+		return (printf("Error\nMissing Map\n"));
+	if (count_data != 6)
 		return (1);
-	if (verif_nb_id(map, 0, 0, 0) != 0)
+	if (map_write_check(map, 0, find_map(map, 0, 0), tab_size_y(map, y)) != 0)
 		return (1);
-	// if (verif_id(map, 0, 0) != 0)
-	// 	return (printf("pasbon\n"));// pas fini
-	if (map_write_check(map, 0, y) != 0)
-		return (1);
-	if (verif_wall(map, 0, y) != 0)
+	if (verif_wall(map, 0, find_map(map, 0, 0), tab_size_y(map, y) - 2) != 0)
 		return (1);
 	return (0);
 }

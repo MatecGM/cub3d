@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   tab_pars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:49:53 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/09/20 07:39:53 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/07 22:40:36 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include <parsing.h>
 
 int	count_max_x(char **map, int y)
 {
 	int	count_x;
-	int count_y;
+	int	count_y;
 	int	x;
 
 	count_x = 0;
-	count_y = tab_size_y(map, y, 0);
+	count_y = tab_size_y(map, y);
 	while (count_y != 0)
 	{
 		x = 0;
@@ -30,16 +30,16 @@ int	count_max_x(char **map, int y)
 		y++;
 		count_y--;
 	}
-	return  (count_x);
+	return (count_x);
 }
 
 t_bool	**tab_size_x(char **map, int y, t_bool **tab)
 {
 	int	i;
-	int count_y;
+	int	count_y;
 
 	i = 0;
-	count_y = tab_size_y(map, y, 0);
+	count_y = tab_size_y(map, y);
 	while (i != count_y + 1)
 	{
 		tab[i] = ft_calloc(count_max_x(map, y) + 1, sizeof(t_bool));
@@ -48,60 +48,44 @@ t_bool	**tab_size_x(char **map, int y, t_bool **tab)
 	return (tab);
 }
 
-int	tab_size_y(char **map, int y, int x)
+int	tab_size_y(char **map, int y)
 {
 	int	count_y;
+	int x;
 
 	count_y = 0;
-	while (map[y])
+	y = find_map(map, 0, 0);
+	while (map[y] && map[y][0] != '\n')
 	{
 		x = 0;
-		if (map[y][0] != '\n')
+		if(map[y][x] == ' ')
 		{
 			while (map[y][x] == ' ')
 				x++;
-			if (map[y][x] != '\n')
-				count_y++;
+			if (map[y][x] == '\n')
+				break;
 		}
+		count_y++;
 		y++;
 	}
 	return (count_y);
 }
 
-int	find_map(char **map, int x, int y)
-{
-	int	count;
-
-	count = 0;
-	while (map[y] && count != 6)
-	{
-		x = 0;
-		while (ft_isspace(map[y][x]) && map[y][x] != '\n')
-			x++;
-		if (map[y][x] == '1')
-			break ;
-		else if (map[y][x] != '\n')
-			count++;
-		y++;
-	}
-	return (y);
-}
-
 t_bool	**tab_map(char **map, int y, int x, t_bool **tab)
 {
-	int	nb;
-	int nbb;
+	int	size_y;
+	int	max_x;
 	int	i;
 	int	j;
 
 	i = 0;
-	nb = tab_size_y(map, y, x);
-	nbb = count_max_x(map, y) - 1;
-	while (i != nb)
+	size_y = tab_size_y(map, y);
+	max_x = count_max_x(map, y) - 1;
+	while (i < size_y)
 	{
 		x = 0;
 		j = 0;
-		while (j < nbb)
+		while (j < max_x)
 		{
 			tab[i][j] = find_wall(map, x, y, 1) != 1;
 			j++;
