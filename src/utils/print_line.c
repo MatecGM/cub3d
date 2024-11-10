@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:38:32 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/06 22:37:59 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/10 04:32:44 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void	ft_link_point_y(t_data *data, t_dcoord p1, t_dcoord p2, int color)
 		x = y * d;
 		if ((x + p1.x >= 0 && x + p1.x < WIDTH)
 			&& (y + p1.y >= 0 && y + p1.y < HEIGHT))
-			mlx_set_image_pixel(data->mlx, data->img,
-				p1.x + x, p1.y + y, color);
+			put_pixel_inscreen(data, p1.x + x, p1.y + y, color);
 		y += b;	
 	}
 }
@@ -54,8 +53,7 @@ void	print_line(t_data *data, t_dcoord p1, t_dcoord p2, int color)
 			y = x * d;
 			if ((x + p1.x >= 0 && x + p1.x < WIDTH)
 				&& (y + p1.y >= 0 && y + p1.y < HEIGHT))
-				mlx_set_image_pixel(data->mlx, data->img,
-					p1.x + x, p1.y + y, color);
+				put_pixel_inscreen(data, p1.x + x, p1.y + y, color);
 			x += b;
 		}
 	}

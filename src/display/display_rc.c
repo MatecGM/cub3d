@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 03:45:30 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/30 19:52:01 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/10 04:34:24 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,13 @@ void	display_wall(t_data *data, int x, int size)
 
 	y = HEIGHT / 2 - size / 2;
 	end = HEIGHT / 2 + size / 2;
+	if (y < 0)
+		y = 0;
+	if (end > HEIGHT)
+		end = HEIGHT;
 	while (y < end)
 	{
-		mlx_set_image_pixel(data->mlx, data->img, x, y, 0xFFFFA500);
+		put_pixel_inscreen(data, x, y, 0xFFFFA500);
 		y ++;
 	}
 }

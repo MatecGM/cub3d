@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:29:17 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/30 19:21:43 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/10 04:38:06 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_coord	get_first_wall_x(t_data *data, double dir)
 	}
 	while (dof < 8)
 	{
-		if (rx < data->map_width && rx >= 0 && ry < data->map_height && ry > 0 && (data->map[(int)ry - (yo < 0)][(int)rx] ))
+		if (rx < data->map_width && rx >= 0 && ry < data->map_height && ry > 0 && (data->psg->map[(int)ry - (yo < 0)][(int)rx] ))
 			dof = 8;
 		else
 		{
@@ -91,7 +91,7 @@ t_coord	get_first_wall_y(t_data *data, double dir)
 	}
 	while (dof < 8)
 	{
-		if (rx < data->map_width && rx >= 0 && ry < data->map_height && ry > 0 && (data->map[(int)ry][(int)rx - (xo < 0)] ))
+		if (rx < data->map_width && rx >= 0 && ry < data->map_height && ry > 0 && (data->psg->map[(int)ry][(int)rx - (xo < 0)] ))
 			dof = 8;
 		else
 		{

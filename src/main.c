@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:34:46 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/07 22:16:15 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/10 04:55:39 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	displaying(t_data *data)
 {
 	display_clear(data);
-	display_rc(data);
-	//display_map_mm(data);
-	//display_player_mm(data);
+	//display_rc(data);
+	display_map_mm(data);
+	display_player_mm(data);
 }
 
 int	cube3d(void *d)
@@ -32,6 +32,7 @@ int	cube3d(void *d)
 int	main(void)
 {
 	t_data		data[1];
+	t_parse		psg[1];
 	t_coord		pos;
 
 	data->map_height = 15;
@@ -39,9 +40,12 @@ int	main(void)
 	pos.x = 6;
 	pos.y = 6;
 	
-	data->map = parsing("maps/test_square.cub");
+	if (parsing("maps/test_square.cub", psg))
+		return (1);
+	data->psg = psg;
+	data->map = psg->map;
 	data->pos = pos;
-	data->dir = PI/2;
+	data->dir = convert_card_to_grad(psg->card);
 	data->input = 0;
 //================================================================
 

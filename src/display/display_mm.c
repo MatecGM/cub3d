@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:19:58 by mbico             #+#    #+#             */
-/*   Updated: 2024/10/30 19:58:34 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/10 04:38:30 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	display_map_mm(t_data *data)
 		x = 0;
 		while (x < WIDTH)
 		{
-			if (data->map[y / (HEIGHT / data->map_height)][x / (WIDTH / data->map_width)])
-				mlx_set_image_pixel(data->mlx, data->img, x, y, 0xFFFF0000);
+			if (data->psg->map[y / (HEIGHT / data->map_height)][x / (WIDTH / data->map_width)])
+				put_pixel_inscreen(data, x, y, 0xFFFF0000);
 			if (y % (HEIGHT / data->map_height) == 0 || x % (WIDTH / data->map_width) == 0)
-				mlx_set_image_pixel(data->mlx, data->img, x, y, 0xFF000000);
+				put_pixel_inscreen(data, x, y, 0xFF000000);
 			x ++;
 		}
 		y ++;
@@ -68,7 +68,7 @@ void	display_player_mm(t_data *data)
 		ptr.x = rel_pos.x - 10;
 		while (ptr.x <= rel_pos.x + 10)
 		{
-			mlx_set_image_pixel(data->mlx, data->img, ptr.x, ptr.y, 0xFF0000FF);
+			put_pixel_inscreen(data, ptr.x, ptr.y, 0xFF0000FF);
 			ptr.x ++;
 		}
 		ptr.y ++;

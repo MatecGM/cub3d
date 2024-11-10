@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:46:09 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/05 21:45:14 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/10 04:26:02 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int key_action(t_data *data)
 	}
 	if (get_input_state(data->input, 7))
 	{
-		data->dir += PI/160;
+		data->dir += PI/90;
 		if (data->dir > 2 * PI)
 			data->dir -= PI * 2;
 	}
 	if (get_input_state(data->input, 4))
 	{
-		data->dir -= PI/160;
+		data->dir -= PI/90;
 		if (data->dir < 0)
 			data->dir += PI * 2;
 	}

@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/08 00:00:56 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/10 04:38:05 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,13 @@ typedef struct s_rc
 	double	ay;
 }		t_rc;
 
-typedef	struct s_parse
-{
-	char	**map;
-	char	rot;
-	
-}	t_parse;
-
 typedef struct s_data
 {
 	__uint128_t	input;
 	t_rc		rc;
 	double		dir;
 	t_coord		pos;
+	t_parse		*psg;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -76,6 +70,7 @@ t_coord			get_first_wall_y(t_data *data, double dir);
 t_coord			get_first_wall(t_data *data, double dir);
 int				keydown(int kc, void *d);
 int				keyup(int kc, void *d);
+void			put_pixel_inscreen(t_data *data, int x, int y, int color);
 int				key_action(t_data *data);
 
 void			display_player_mm(t_data *data);

@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/11/07 23:52:09 by mbico            ###   ########.fr        #
+#    Updated: 2024/11/10 04:40:37 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS = main.c\
 	   input/ft_keydown.c\
 		parsing/fonction.c\
 		parsing/parsing.c\
-		parsing/parsing_utils.c\
+		parsing/utils/parsing_utils3.c\
 		parsing/error_map.c\
 		parsing/error_id.c\
 		parsing/tab_pars.c\
