@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:34:46 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/10 04:55:39 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/10 21:46:50 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 void	displaying(t_data *data)
 {
 	display_clear(data);
-	//display_rc(data);
-	display_map_mm(data);
-	display_player_mm(data);
+	display_rc(data);
+	//display_map_mm(data);
+	//display_player_mm(data);
+	display_screen(data, data->screen);
 }
 
 int	cube3d(void *d)
@@ -27,6 +28,7 @@ int	cube3d(void *d)
 	data = (t_data *) d;
 	key_action(data);
 	displaying(data);
+	return (0);
 }
 
 int	main(void)
@@ -47,6 +49,7 @@ int	main(void)
 	data->pos = pos;
 	data->dir = convert_card_to_grad(psg->card);
 	data->input = 0;
+	data->screen = init_screen();
 //================================================================
 
 	data->mlx = mlx_init();
@@ -56,6 +59,5 @@ int	main(void)
 	mlx_on_event(data->mlx, data->win, 	MLX_KEYDOWN, keydown, data);
 	mlx_on_event(data->mlx, data->win, 	MLX_KEYUP, keyup, data);
 	mlx_loop_hook(data->mlx, cube3d, data);
-	displaying(data);
 	mlx_loop(data->mlx);
 }

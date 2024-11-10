@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/10 04:38:05 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/10 23:33:08 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef struct s_coord
 	double		y;
 }				t_coord;
 
+//wall hit
+typedef	struct s_wh
+{
+	t_coord	hit;
+	t_verif	face;
+}	t_wh;
+
 typedef struct s_dcoord
 {
 	int			x;
@@ -43,8 +50,11 @@ typedef struct s_dcoord
 
 typedef struct s_rc
 {
-	double	ax;
 	double	ay;
+	double	ax;
+	uint8_t	rd;
+	t_coord	ray;
+	t_coord	side_dist;
 }		t_rc;
 
 typedef struct s_data
@@ -57,6 +67,7 @@ typedef struct s_data
 	void		*mlx;
 	void		*win;
 	void		*img;
+	int32_t		**screen;
 	t_bool		**map;
 	int			map_width;
 	int			map_height;
@@ -65,9 +76,7 @@ typedef struct s_data
 int				ft_keydown(int kc, void *d);
 void			displaying(t_data *data);
 void			print_line(t_data *data, t_dcoord p1, t_dcoord p2, int color);
-t_coord			get_first_wall_x(t_data *data, double dir);
-t_coord			get_first_wall_y(t_data *data, double dir);
-t_coord			get_first_wall(t_data *data, double dir);
+t_coord			dda(t_data *data, double dir);
 int				keydown(int kc, void *d);
 int				keyup(int kc, void *d);
 void			put_pixel_inscreen(t_data *data, int x, int y, int color);
@@ -78,5 +87,7 @@ void			display_map_mm(t_data *data);
 void			display_rc(t_data *data);
 t_bool			check_approx(double nb1, double nb2, int approx);
 void			display_clear(t_data *data);
+int32_t			**init_screen(void);
+void			display_screen(t_data *data, int32_t **screen);
 
 #endif

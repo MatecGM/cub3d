@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/11/10 04:40:37 by mbico            ###   ########.fr        #
+#    Updated: 2024/11/10 19:18:03 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ OBJ_DIR = obj
 
 SRCS = main.c\
 	   raycast.c\
+	   init.c\
 	   display/display_mm.c\
 	   display/display_rc.c\
 	   display/display_utils.c\

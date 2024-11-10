@@ -6,18 +6,16 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 03:45:30 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/10 04:34:24 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/10 23:30:58 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include <cube3d.h>
 
 int	get_wall_size(t_coord pos, t_coord hit)
 {
 	double	dist;
 	int	size;
-	
 
 	dist = sqrt(pow(hit.x - pos.x, 2.0) + pow(hit.y - pos.y, 2.0));
 	size = 1 / (double)dist * (HEIGHT / 2.0);
@@ -57,7 +55,7 @@ void	display_rc(t_data *data)
 			dir += 2 * PI;
 		else if (dir >= PI * 2)
 			dir -= 2 * PI;
-		hit = get_first_wall(data, dir);
+		hit = dda(data, dir);
 		size = get_wall_size(data->pos, hit);
 		display_wall(data, i, size);
 		i ++;
