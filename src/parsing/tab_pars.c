@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:49:53 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/11/07 22:40:36 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/17 08:06:59 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,19 @@ t_bool	**tab_size_x(char **map, int y, t_bool **tab)
 int	tab_size_y(char **map, int y)
 {
 	int	count_y;
-	int x;
+	int	x;
 
 	count_y = 0;
 	y = find_map(map, 0, 0);
 	while (map[y] && map[y][0] != '\n')
 	{
 		x = 0;
-		if(map[y][x] == ' ')
+		if (map[y][x] == ' ')
 		{
 			while (map[y][x] == ' ')
 				x++;
 			if (map[y][x] == '\n')
-				break;
+				break ;
 		}
 		count_y++;
 		y++;

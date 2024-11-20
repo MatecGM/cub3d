@@ -6,18 +6,18 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:38:32 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/10 04:32:44 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/17 18:17:39 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 
-void	ft_link_point_y(t_data *data, t_dcoord p1, t_dcoord p2, int color)
+void	ft_link_point_y(t_data *data, t_dcoord p1, t_dcoord p2, t_argb color)
 {
-	int				x;
-	int				y;
-	float			d;
-	int				b;
+	int		x;
+	int		y;
+	float	d;
+	int		b;
 
 	x = 0;
 	y = 0;
@@ -26,19 +26,19 @@ void	ft_link_point_y(t_data *data, t_dcoord p1, t_dcoord p2, int color)
 	while (y + p1.y != p2.y)
 	{
 		x = y * d;
-		if ((x + p1.x >= 0 && x + p1.x < WIDTH)
-			&& (y + p1.y >= 0 && y + p1.y < HEIGHT))
+		if ((x + p1.x >= 0 && x + p1.x < WIDTH) && (y + p1.y >= 0 && y
+				+ p1.y < HEIGHT))
 			put_pixel_inscreen(data, p1.x + x, p1.y + y, color);
-		y += b;	
+		y += b;
 	}
 }
 
-void	print_line(t_data *data, t_dcoord p1, t_dcoord p2, int color)
+void	print_line(t_data *data, t_dcoord p1, t_dcoord p2, t_argb color)
 {
-	int				x;
-	int				y;
-	double			d;
-	int				b;
+	int		x;
+	int		y;
+	double	d;
+	int		b;
 
 	x = 0;
 	y = 0;
@@ -51,8 +51,8 @@ void	print_line(t_data *data, t_dcoord p1, t_dcoord p2, int color)
 		while (x + p1.x != p2.x)
 		{
 			y = x * d;
-			if ((x + p1.x >= 0 && x + p1.x < WIDTH)
-				&& (y + p1.y >= 0 && y + p1.y < HEIGHT))
+			if ((x + p1.x >= 0 && x + p1.x < WIDTH) && (y + p1.y >= 0 && y
+					+ p1.y < HEIGHT))
 				put_pixel_inscreen(data, p1.x + x, p1.y + y, color);
 			x += b;
 		}

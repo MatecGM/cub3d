@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freetab.c                                       :+:      :+:    :+:   */
+/*   ft_map_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 06:49:15 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 07:59:31 by mbico            ###   ########.fr       */
+/*   Created: 2024/11/17 03:54:33 by mbico             #+#    #+#             */
+/*   Updated: 2024/11/17 07:32:31 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <cube3d.h>
 
-void	ft_freetab(void **tab, int y)
+t_dcoord	ft_map_len(t_bool **map)
 {
-	int	i;
+	t_dcoord	size;
 
-	i = 0;
-	while (tab[i] && i < y)
-	{
-		free(tab[i]);
-		i ++;
-	}
-	free(tab);
+	size.x = 0;
+	while (map[0][size.x] != ERROR)
+		size.x++;
+	size.y = 0;
+	while (map[size.y][size.x])
+		size.y++;
+	return (size);
 }

@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:41:29 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/11/10 04:40:43 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/17 07:29:34 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 char	**map_parsing_bis(char *map, char *parse_gnl, char **parsed_map)
 {
 	int	nb;
-	int fd;
+	int	fd;
 
 	nb = 0;
-	fd = open (map, O_RDONLY);
+	fd = open(map, O_RDONLY);
 	parse_gnl = get_next_line(fd);
 	while (parse_gnl)
 	{
@@ -27,9 +27,10 @@ char	**map_parsing_bis(char *map, char *parse_gnl, char **parsed_map)
 		parse_gnl = get_next_line(fd);
 		nb++;
 	}
-	close (fd);
+	close(fd);
 	return (parsed_map);
 }
+
 char	**map_parsing(char *map, int nb)
 {
 	int		fd;
@@ -46,7 +47,7 @@ char	**map_parsing(char *map, int nb)
 		parse_gnl = get_next_line(fd);
 		nb++;
 	}
-	close (fd);
+	close(fd);
 	parsed_map = ft_calloc(nb + 1, sizeof(char *));
 	return (map_parsing_bis(map, parse_gnl, parsed_map));
 }
@@ -81,22 +82,27 @@ int	verif_png(char *str)
 	return (0);
 }
 
-char find_orentation(char **map, int y)
+char	find_orentation(char **map, int y, t_coord *pos)
 {
-	int x;
+	int	x;
+	int	rel_y;
 
-	while(map[y])
+	rel_y = y;
+	while (map[y])
 	{
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'N' || map[y][x] == 'S' \
-			|| map[y][x] == 'E' || map[y][x] == 'W')
+			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
+				|| map[y][x] == 'W')
+			{
+				pos->x = (double)x + 0.5;
+				pos->y = (double)y + 0.5 - (double)rel_y;
 				return (map[y][x]);
+			}
 			x++;
 		}
 		y++;
 	}
 	return (0);
 }
-

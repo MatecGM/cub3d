@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:18:36 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/10 21:47:44 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/17 18:15:33 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,25 @@ void	display_clear(t_data *data)
 	int	y;
 
 	y = 0;
-	while(y < HEIGHT)
+	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
 		{
-			put_pixel_inscreen(data, x, y, 0xEEEEEEFF);
-			x ++;
+			if (y < HEIGHT / 2)
+				put_pixel_inscreen(data, x, y, data->map.sky);
+			else
+				put_pixel_inscreen(data, x, y, data->map.floor);
+			x++;
 		}
-		y ++;
-	} 
+		y++;
+	}
 }
 
-void	put_pixel_inscreen(t_data *data, int x, int y, int color)
+void	put_pixel_inscreen(t_data *data, int x, int y, t_argb color)
 {
 	if (x < WIDTH && x > 0 && y < HEIGHT && y > 0)
-		data->screen[y][x] = color;
+		data->screen[y][x] = color.argb;
 }
 
 void	display_screen(t_data *data, int32_t **screen)
@@ -46,11 +49,11 @@ void	display_screen(t_data *data, int32_t **screen)
 	while (y < HEIGHT)
 	{
 		x = 0;
-		while(x < WIDTH)
+		while (x < WIDTH)
 		{
 			mlx_set_image_pixel(data->mlx, data->img, x, y, screen[y][x]);
-			x ++;
+			x++;
 		}
-		y ++;
+		y++;
 	}
 }

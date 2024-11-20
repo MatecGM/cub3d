@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/11/10 19:18:03 by mbico            ###   ########.fr        #
+#    Updated: 2024/11/17 16:46:24 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,20 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 SRCS = main.c\
-	   raycast.c\
 	   init.c\
+	   close.c\
 	   display/display_mm.c\
+	   display/circle_mm.c\
 	   display/display_rc.c\
 	   display/display_utils.c\
+		display/display_hud.c\
 	   utils/check_approx.c\
 	   utils/print_line.c\
-	   input/ft_keydown.c\
+	   utils/ft_map_len.c\
+	   input/input.c\
+	   input/input_action.c\
+	   input/mouse.c\
+	   input/mouse_action.c\
 		parsing/fonction.c\
 		parsing/parsing.c\
 		parsing/utils/parsing_utils3.c\
@@ -35,6 +41,9 @@ SRCS = main.c\
 		parsing/tab_pars.c\
 		parsing/utils/parsing_utils1.c\
 		parsing/utils/parsing_utils2.c\
+		raycasting/dda.c\
+		raycasting/dda_x.c\
+		raycasting/dda_y.c\
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 

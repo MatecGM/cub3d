@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 01:08:13 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/11/07 22:40:58 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/17 04:54:02 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	**tab_id(char **map, int y, int nb)
 				x++;
 		}
 		if (one_ligne(id, map[y]) == -1)
-			return (NULL);//leaak
+			return (NULL); //leaak
 		y++;
 		nb++;
 	}

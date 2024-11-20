@@ -5,38 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 03:45:30 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/10 23:30:58 by mbico            ###   ########.fr       */
+/*   Created: 2024/11/17 05:01:10 by mbico             #+#    #+#             */
+/*   Updated: 2024/11/17 18:12:36 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx.h"
 #include <cube3d.h>
 
 int	get_wall_size(t_coord pos, t_coord hit)
 {
 	double	dist;
-	int	size;
+	int		size;
 
 	dist = sqrt(pow(hit.x - pos.x, 2.0) + pow(hit.y - pos.y, 2.0));
 	size = 1 / (double)dist * (HEIGHT / 2.0);
 	return (size);
 }
 
-void	display_wall(t_data *data, int x, int size)
+t_argb	get_png_pixel(t_data *data, t_texture txt, double x, t_dcoord ptr)
 {
-	int	y;
-	int end;
+	t_dcoord	rel;
+	int			margin;
+	t_argb		color;
 
-	y = HEIGHT / 2 - size / 2;
-	end = HEIGHT / 2 + size / 2;
-	if (y < 0)
-		y = 0;
-	if (end > HEIGHT)
-		end = HEIGHT;
-	while (y < end)
+	margin = (HEIGHT - ptr.y);
+	rel.x = (int)((x - floor(x)) * txt.size.x);
+	rel.y = (int)(((ptr.x - margin) / (double)(ptr.y - margin)) * txt.size.y);
+	color.argb = mlx_get_image_pixel(data->mlx, txt.img, rel.x, rel.y);
+	return (color);
+}
+
+t_argb	texture_rel_color(t_data *data, t_wh wh, t_dcoord ptr)
+{
+	t_argb	color;
+
+	color = (t_argb)0xFF000000;
+	if (wh.face == NO)
+		color = get_png_pixel(data, data->map.txt[NO], wh.hit.x, ptr);
+	else if (wh.face == SO)
+		color = get_png_pixel(data, data->map.txt[SO], -wh.hit.x, ptr);
+	else if (wh.face == WE)
+		color = get_png_pixel(data, data->map.txt[WE], -wh.hit.y, ptr);
+	else if (wh.face == EA)
+		color = get_png_pixel(data, data->map.txt[EA], wh.hit.y, ptr);
+	return (color);
+}
+
+void	display_wall(t_data *data, int x, int size, t_wh wh)
+{
+	t_argb		color;
+	t_dcoord	ptr;
+
+	ptr.x = HEIGHT / 2 - size / 2;
+	ptr.y = HEIGHT / 2 + size / 2;
+	if (ptr.x < 0)
+		ptr.x = 0;
+	if (ptr.y > HEIGHT)
+		ptr.y = HEIGHT;
+	while (ptr.x < ptr.y)
 	{
-		put_pixel_inscreen(data, x, y, 0xFFFFA500);
-		y ++;
+		color = texture_rel_color(data, wh, ptr);
+		put_pixel_inscreen(data, x, ptr.x, color);
+		ptr.x++;
 	}
 }
 
@@ -45,19 +76,19 @@ void	display_rc(t_data *data)
 	int		i;
 	int		size;
 	double	dir;
-	t_coord	hit;
+	t_wh	wh;
 
 	i = 1;
 	while (i < WIDTH)
 	{
-		dir = (data->dir - PI / 4.0) + ((PI / 2.0) / (double)WIDTH * i);
+		dir = (data->player.dir - PI / 4.0) + ((PI / 2.0) / (double)WIDTH * i);
 		if (dir < 0)
 			dir += 2 * PI;
 		else if (dir >= PI * 2)
 			dir -= 2 * PI;
-		hit = dda(data, dir);
-		size = get_wall_size(data->pos, hit);
-		display_wall(data, i, size);
-		i ++;
+		wh = dda(data, dir);
+		size = get_wall_size(data->player.pos, wh.hit);
+		display_wall(data, i, size, wh);
+		i++;
 	}
 }

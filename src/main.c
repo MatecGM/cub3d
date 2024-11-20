@@ -5,59 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/28 21:34:46 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/10 21:46:50 by mbico            ###   ########.fr       */
+/*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
+/*   Updated: 2024/11/17 17:39:00 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx.h"
 #include <cube3d.h>
 
 void	displaying(t_data *data)
 {
 	display_clear(data);
 	display_rc(data);
-	//display_map_mm(data);
-	//display_player_mm(data);
+	display_crosshair(data);
+	display_map_mm(data);
+	t_coord center;
+	center.x = 120;
+	center.y = 120;
+	circle_mm(data, center, 75, (t_argb)0xFFFFFFFF);
 	display_screen(data, data->screen);
 }
 
 int	cube3d(void *d)
 {
-	t_data *data;
+	t_data	*data;
 
-	data = (t_data *) d;
+	data = (t_data *)d;
 	key_action(data);
+	mouse_action(data);
 	displaying(data);
 	return (0);
 }
 
 int	main(void)
 {
-	t_data		data[1];
-	t_parse		psg[1];
-	t_coord		pos;
+	t_data	data[1];
+	t_parse	psg[1];
+	t_coord	pos;
 
-	data->map_height = 15;
-	data->map_width = 15;
-	pos.x = 6;
-	pos.y = 6;
-	
-	if (parsing("maps/test_square.cub", psg))
-		return (1);
-	data->psg = psg;
-	data->map = psg->map;
-	data->pos = pos;
-	data->dir = convert_card_to_grad(psg->card);
-	data->input = 0;
-	data->screen = init_screen();
-//================================================================
-
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cube3D");
-	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	init_data(data, psg);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	mlx_on_event(data->mlx, data->win, 	MLX_KEYDOWN, keydown, data);
-	mlx_on_event(data->mlx, data->win, 	MLX_KEYUP, keyup, data);
+	mlx_on_event(data->mlx, data->win, MLX_KEYDOWN, keydown, data);
+	mlx_on_event(data->mlx, data->win, MLX_KEYUP, keyup, data);
+	mlx_on_event(data->mlx, data->win, MLX_MOUSEUP, mouseup, data);
+	mlx_on_event(data->mlx, data->win, MLX_MOUSEDOWN, mousedown, data);
 	mlx_loop_hook(data->mlx, cube3d, data);
 	mlx_loop(data->mlx);
 }

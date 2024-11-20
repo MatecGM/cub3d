@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freetab.c                                       :+:      :+:    :+:   */
+/*   coord.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 06:49:15 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 07:59:31 by mbico            ###   ########.fr       */
+/*   Created: 2024/11/17 04:20:40 by mbico             #+#    #+#             */
+/*   Updated: 2024/11/17 15:48:40 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef COORD_H
+# define COORD_H
 
-void	ft_freetab(void **tab, int y)
+# include <stdint.h>
+
+typedef struct s_coord
 {
-	int	i;
+	double		x;
+	double		y;
+}				t_coord;
 
-	i = 0;
-	while (tab[i] && i < y)
-	{
-		free(tab[i]);
-		i ++;
-	}
-	free(tab);
-}
+typedef struct s_dcoord
+{
+	int			x;
+	int			y;
+}				t_dcoord;
+
+typedef struct	s_circle
+{
+	t_coord		center;
+	uint32_t	r;
+	uint32_t	color;
+}	t_circle;
+
+#endif
