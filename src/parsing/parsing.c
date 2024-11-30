@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:43:00 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 08:56:15 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/27 22:28:58 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_bool	parsing(char *path, t_parse *psg)
 	psg->card = find_orentation(map, y, &psg->pos);
 	psg->map = ft_calloc(tab_size_y(map, y) + 1, sizeof(t_bool *));
 	psg->map = tab_size_x(map, y, psg->map);
+	if (!psg->map)
+		return (TRUE);
 	psg->map = tab_map(map, y, 0, psg->map);
 	ft_freetab((void *)map, INT_MAX);
 	return (FALSE);

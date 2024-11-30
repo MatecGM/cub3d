@@ -6,13 +6,13 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 03:54:33 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 07:32:31 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/20 20:03:14 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 
-t_dcoord	ft_map_len(t_bool **map)
+t_dcoord	ft_map_len(int8_t **map)
 {
 	t_dcoord	size;
 

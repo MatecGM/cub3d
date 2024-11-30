@@ -6,10 +6,11 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:49:53 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/11/17 08:06:59 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/27 20:45:05 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cube3d.h"
 #include <parsing.h>
 
 int	count_max_x(char **map, int y)
@@ -32,17 +33,23 @@ int	count_max_x(char **map, int y)
 	}
 	return (count_x);
 }
-
-t_bool	**tab_size_x(char **map, int y, t_bool **tab)
+int8_t	**tab_size_x(char **map, int y, int8_t **tab)
 {
 	int	i;
 	int	count_y;
 
+	if (!map)
+		return (NULL);
 	i = 0;
 	count_y = tab_size_y(map, y);
 	while (i != count_y + 1)
 	{
 		tab[i] = ft_calloc(count_max_x(map, y) + 1, sizeof(t_bool));
+		if (!tab[i])
+		{
+			ft_freetab((void *)tab, i);
+			return (NULL);
+		}
 		i++;
 	}
 	return (tab);
@@ -71,7 +78,7 @@ int	tab_size_y(char **map, int y)
 	return (count_y);
 }
 
-t_bool	**tab_map(char **map, int y, int x, t_bool **tab)
+int8_t	**tab_map(char **map, int y, int x, int8_t **tab)
 {
 	int	size_y;
 	int	max_x;
@@ -87,7 +94,7 @@ t_bool	**tab_map(char **map, int y, int x, t_bool **tab)
 		j = 0;
 		while (j < max_x)
 		{
-			tab[i][j] = find_wall(map, x, y, 1) != 1;
+			tab[i][j] = find_wall(map, x, y, 1) - 1;
 			j++;
 			if (map[y][x] != '\0')
 				x++;

@@ -6,10 +6,11 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 13:25:55 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/11/17 06:31:57 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/27 20:30:28 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cube3d.h"
 #include <parsing.h>
 
 int	map_write_check(char **map, int x, int y, int limit)
@@ -23,7 +24,7 @@ int	map_write_check(char **map, int x, int y, int limit)
 		while (map[y][x])
 		{
 			if (map[y][x] != 'N' && map[y][x] != 'S' && map[y][x] != 'E'
-				&& map[y][x] != '1' && map[y][x] != '0' && map[y][x] != 'W'
+				&& !ft_isdigit(map[y][x]) && map[y][x] != 'W'
 				&& map[y][x] != ' ' && map[y][x] != '\n')
 				return (printf("Error\nMap\n"));
 			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
@@ -43,7 +44,7 @@ int	verif_wall_bis(char **map, int y, int x, int nb)
 {
 	while (map[y][x] && map[y][x] != '\n')
 	{
-		if (map[y][x] != '1' && map[y][x] != ' ')
+		if (!ft_isdigit(map[y][x]) && map[y][x] != ' ')
 			return (printf("Error\nMissing Wall\n"));
 		x++;
 	}

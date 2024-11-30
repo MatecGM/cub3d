@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 20:44:44 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/28 01:03:44 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdint.h>
+#include <sys/time.h>
 # include <limits.h>
 
 # include <coord.h>
@@ -26,12 +27,26 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
-
 # define PI 3.14159265359
 
 # define RENDER_DISTANCE 12
+
 # define MINIMAP_SIZE 100
-#define	RD_MM 8
+# define RD_MM 8
+# define SIZE_MM 150
+# define PADDING_MM 45
+# define RADIUS_MM 75
+
+# define DOOR_OP_PATH_TXT "./txtr/door_open.png"
+# define DOOR_CLS_PATH_TXT "./txtr/door_close.png"
+
+typedef enum e_wall
+{
+	FLOOR,
+	WALL,
+	DOOR_CLS,
+	DOOR_OP,
+}	t_wall;
 
 typedef union u_argb
 {
@@ -48,8 +63,9 @@ typedef union u_argb
 //wall hit
 typedef	struct s_wh
 {
-	t_coord	hit;
-	t_verif	face;
+	t_coord		hit;
+	t_verif		face;
+	t_dcoord	rpos;
 }	t_wh;
 
 typedef struct s_rc
@@ -70,7 +86,7 @@ typedef	struct s_texture
 
 typedef struct s_map
 {
-	t_bool		**content;
+	int8_t		**content;
 	t_texture	*txt;
 	t_dcoord	size;
 	t_argb		floor;
@@ -83,13 +99,30 @@ typedef struct s_player
 	double		old_dir;
 	t_dcoord	mouse_init;
 	t_coord		pos;
+	double		move_speed;
+	double		rot_speed;
+	t_wall		target;
 }	t_player;
+
+typedef struct s_hud
+{
+	t_bool	rotate_mm;
+}	t_hud;
+
+typedef struct	s_fps
+{
+	uint32_t	old_time;
+	uint32_t	time;
+	double		fps;
+}	t_fps;
 
 typedef struct s_data
 {
 	__uint128_t	input;
 	t_rc		rc;
 	t_parse		*psg;
+	t_hud		hud;
+	t_fps		fps;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -109,8 +142,7 @@ t_bool			check_approx(double nb1, double nb2, int approx);
 void			display_clear(t_data *data);
 void			display_screen(t_data *data, int32_t **screen);
 void			display_crosshair(t_data *data);
-void			display_map_mm(t_data *data);
-t_dcoord		ft_map_len(t_bool **map);
+t_dcoord		ft_map_len(int8_t **map);
 
 t_bool	get_input_state(__uint128_t input, int kc);
 int		keydown(int kc, void *d);
@@ -119,6 +151,8 @@ int		key_action(t_data *data);
 int		mousedown(int kc, void *d);
 int		mouseup(int kc, void *d);
 void	mouse_action(t_data *data);
+void	hud_action(t_data *data, int kc);
+void	interact_system(t_data *data, int kc);
 
 t_coord	dda_x(t_data *data, double dir);
 t_coord	dda_y(t_data *data, double dir);
@@ -126,6 +160,17 @@ t_coord	dda_y(t_data *data, double dir);
 t_bool		init_data(t_data *data, t_parse *psg);
 int32_t		**init_screen(void);
 
+t_bool		put_pixel_on_mm(uint32_t **frame_mm, int32_t x, int32_t y, uint32_t color);
+uint32_t	**init_mm(void);
+void		display_mm_on_screen(t_data *data, uint32_t **frame);
+void		display_mm(t_data *data);
+void	print_line_mm(uint32_t **frame, t_dcoord p1, t_dcoord p2, t_argb color);
+uint32_t	**rotate_mm(uint32_t **src, double dir);
+
+
+void	fps_counter(t_data *data);
+unsigned int	time_now(void);
+t_dcoord	get_cdvec(double dir);
 void		close_safe(t_data *data);
 
 #endif

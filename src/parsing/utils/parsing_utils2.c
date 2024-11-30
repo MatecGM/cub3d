@@ -6,10 +6,11 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:49:10 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 06:38:53 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/20 18:34:44 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cube3d.h"
 #include <parsing.h>
 
 int	count_char(char *str, char c)
@@ -72,7 +73,7 @@ int	verif_map(char **map, int *y)
 	return (count_data);
 }
 
-t_bool	color_convert_rgb_hex(int *color, char *rgb)
+t_bool	color_convert_rgb_hex(uint32_t *color, char *rgb)
 {
 	char	**split;
 	int		i;

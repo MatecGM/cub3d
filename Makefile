@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/11/17 16:46:24 by mbico            ###   ########.fr        #
+#    Updated: 2024/11/28 00:32:26 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,26 +21,32 @@ OBJ_DIR = obj
 SRCS = main.c\
 	   init.c\
 	   close.c\
-	   display/display_mm.c\
-	   display/circle_mm.c\
+	   display/minimap/display_mm.c\
+		display/minimap/circle_mm.c\
+		display/minimap/init_mm.c\
+		display/minimap/calc_mm.c\
+		display/minimap/print_line_mm.c\
+		display/minimap/rotation_mm.c\
 	   display/display_rc.c\
 	   display/display_utils.c\
 		display/display_hud.c\
 	   utils/check_approx.c\
 	   utils/print_line.c\
 	   utils/ft_map_len.c\
+	   utils/time_utils.c\
+	   utils/fps_counter.c\
 	   input/input.c\
 	   input/input_action.c\
 	   input/mouse.c\
 	   input/mouse_action.c\
 		parsing/fonction.c\
 		parsing/parsing.c\
-		parsing/utils/parsing_utils3.c\
 		parsing/error_map.c\
 		parsing/error_id.c\
 		parsing/tab_pars.c\
 		parsing/utils/parsing_utils1.c\
 		parsing/utils/parsing_utils2.c\
+		parsing/utils/parsing_utils3.c\
 		raycasting/dda.c\
 		raycasting/dda_x.c\
 		raycasting/dda_y.c\

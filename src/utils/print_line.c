@@ -6,13 +6,13 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:38:32 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 18:17:39 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/20 16:04:07 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 
-void	ft_link_point_y(t_data *data, t_dcoord p1, t_dcoord p2, t_argb color)
+static void	ft_link_point_y(t_data *data, t_dcoord p1, t_dcoord p2, t_argb color)
 {
 	int		x;
 	int		y;

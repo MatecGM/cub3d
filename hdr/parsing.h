@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:38:13 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 06:38:35 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/20 20:02:47 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef enum e_verif
 
 typedef	struct s_parse
 {
-	t_bool		**map;
+	int8_t		**map;
 	char		**ress;
 	t_coord		pos;
 	char		card;
@@ -47,9 +47,9 @@ int		find_wall(char **map, int x, int y, int find_nb);
 int		find_map(char **map, int x, int y);
 
 int		count_max_x(char **map, int y);
-t_bool	**tab_size_x(char **map, int y, t_bool **tab);
+int8_t	**tab_size_x(char **map, int y, int8_t **tab);
 int		tab_size_y(char **map, int y);
-t_bool	**tab_map(char **map, int y, int x, t_bool **tab);
+int8_t	**tab_map(char **map, int y, int x, int8_t **tab);
 
 int		verif_png(char *str);
 int		fill_id(char *ligne, char **id, t_verif param);
@@ -71,6 +71,6 @@ int     sdigit_comma(int i);
 int     count_char(char *str, char c);
 int     count_tab(char **tab);
 double  convert_card_to_grad(char card);
-t_bool	color_convert_rgb_hex(int *color, char *rgb);
+t_bool	color_convert_rgb_hex(uint32_t *clr, char *rgb);
 
 #endif

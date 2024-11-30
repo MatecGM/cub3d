@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:41:29 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/11/17 07:29:34 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/20 13:36:30 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	**map_parsing_bis(char *map, char *parse_gnl, char **parsed_map)
 	int	nb;
 	int	fd;
 
+	if (!parsed_map)
+		return (NULL);
 	nb = 0;
 	fd = open(map, O_RDONLY);
 	parse_gnl = get_next_line(fd);

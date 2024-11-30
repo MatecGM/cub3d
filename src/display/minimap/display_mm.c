@@ -6,26 +6,30 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:19:58 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/18 21:42:00 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/30 00:47:03 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
-#include <math.h>
+#include <stdint.h>
 
-void	display_viewray(t_data *data, t_dcoord rel_pos);
-
-t_bool	circle_calc(t_dcoord sptr)
+void	display_wall_block(t_data *data, t_coord ptr, t_dcoord sptr, uint32_t **frame)
 {
-	uint32_t	dist;
-
-	dist = sqrt(pow(sptr.x - 75, 2) + pow(sptr.y - 75, 2));
-	if (dist <= 75)
-		return (TRUE);
-	return (FALSE);
+	if ((ptr.x >= 0 && ptr.x < data->map.size.x && ptr.y >= 0 && ptr.y < data->map.size.y))
+	{
+		if (data->map.content[(int)ptr.y][(int)ptr.x] == WALL)
+			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCC000000);
+		else if (data->map.content[(int)ptr.y][(int)ptr.x] == DOOR_CLS)
+			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCCFF0000);
+		else if (data->map.content[(int)ptr.y][(int)ptr.x] == DOOR_OP)
+			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCC00FF00);
+	}
+	else if (!(ptr.x >= 0 && ptr.x < data->map.size.x && ptr.y >= 0 && ptr.y < data->map.size.y))
+		put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCC000000);
+	
 }
 
-void	display_map_mm(t_data *data)
+void	display_map_mm(t_data *data, uint32_t **frame)
 {
 	t_coord		ptr;
 	t_dcoord	sptr;
@@ -41,8 +45,7 @@ void	display_map_mm(t_data *data)
 		while (sptr.x < 150)
 		{
 			ptr.x = data->player.pos.x - RD_MM / 2.0 + (double)i.x;
-			if (ptr.x >= 0 && ptr.x < data->map.size.x && ptr.y >= 0 && ptr.y < data->map.size.y && data->map.content[(int)ptr.y][(int)ptr.x] && circle_calc(sptr) || (!(ptr.x >= 0 && ptr.x < data->map.size.x && ptr.y >= 0 && ptr.y < data->map.size.y) && circle_calc(sptr)))
-				put_pixel_inscreen(data, sptr.x + 45, sptr.y + 45, (t_argb)0xCC000000);
+			display_wall_block(data, ptr, sptr, frame);
 			if (sptr.x > (150.0 / RD_MM) * i.x)
 				i.x += 0.1;
 			sptr.x ++;
@@ -51,15 +54,9 @@ void	display_map_mm(t_data *data)
 			i.y += 0.1;
 		sptr.y ++;
 	}
-	t_dcoord rel_pos;
-	rel_pos.x = 75 + 45;
-	rel_pos.y = 75 + 45;
-	display_viewray(data, rel_pos);
-	put_pixel_inscreen(data, 75 + 45, 75 + 45, (t_argb)0xFFFFFFFF);
-	
 }
 
-void	display_viewray(t_data *data, t_dcoord rel_pos)
+void	display_viewray(t_data *data, t_dcoord rel_pos, uint32_t **frame)
 {
 	t_wh		wh;
 	t_dcoord	rel_hit;
@@ -67,9 +64,8 @@ void	display_viewray(t_data *data, t_dcoord rel_pos)
 	double		dir;
 
 	i = 0;
-	rel_hit.y = data->rc.ay * 150  + 45;
-	rel_hit.x = data->rc.ax * 150 + 45;
-	print_line(data, rel_pos, rel_hit, (t_argb)0xFF00FF00);
+	rel_hit.y = data->rc.ay * 150;
+	rel_hit.x = data->rc.ax * 150;
 	while (i < 150)
 	{
 		dir = (data->player.dir - PI / 4.0) + ((PI / 2.0) / (double)150 * i);
@@ -78,14 +74,25 @@ void	display_viewray(t_data *data, t_dcoord rel_pos)
 		else if (dir >= PI * 2)
 			dir -= 2 * PI;
 		wh = dda(data, dir);
-		rel_hit.x = (wh.hit.x - data->player.pos.x) * 150. / 8. + 120 - 1;
-		rel_hit.y = (wh.hit.y - data->player.pos.y) * 150. / 8. + 120;
-		print_line(data, rel_pos, rel_hit, (t_argb)0xFF6666FF);
+		rel_hit.x = (wh.hit.x - data->player.pos.x) * 150. / 8. + 75 - 1;
+		rel_hit.y = (wh.hit.y - data->player.pos.y) * 150. / 8. + 75;
+		print_line_mm(frame, rel_pos, rel_hit, (t_argb)0xFF6666FF);
 		i ++;
 	}
 }
 
-void	display_player_mm(t_data *data)
-
+void	display_mm(t_data *data)
 {
+	uint32_t	**frame;
+
+	frame = init_mm();
+	display_map_mm(data, frame);
+	t_dcoord rel_pos;
+	rel_pos.x = 75;
+	rel_pos.y = 75;
+	display_viewray(data, rel_pos, frame);
+	if (data->hud.rotate_mm)
+		frame = rotate_mm(frame, data->player.dir);
+	display_mm_on_screen(data, frame);
+	
 }

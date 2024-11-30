@@ -25,25 +25,6 @@
    "-O3",
    "-g",
    "-c",
-   "src/input/ft_keydown.c",
-   "-o",
-   "obj/input/ft_keydown.o",
-   "-I",
-   "hdr",
-   "-I",
-   "./libft",
-   "-I",
-   "./MacroLibX/includes"
-  ],
-  "file": "src/input/ft_keydown.c"
- },
- {
-  "directory": "/nfs/homes/mbico/Desktop/cub3d",
-  "arguments": [
-   "cc",
-   "-O3",
-   "-g",
-   "-c",
    "src/parsing/parsing.c",
    "-o",
    "obj/parsing/parsing.o",
@@ -93,5 +74,537 @@
    "./MacroLibX/includes"
   ],
   "file": "src/parsing/tab_pars.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/init.c",
+   "-o",
+   "obj/init.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/init.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/close.c",
+   "-o",
+   "obj/close.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/close.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/display/minimap/display_mm.c",
+   "-o",
+   "obj/display/minimap/display_mm.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/display/minimap/display_mm.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/display/minimap/circle_mm.c",
+   "-o",
+   "obj/display/minimap/circle_mm.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/display/minimap/circle_mm.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/display/minimap/init_mm.c",
+   "-o",
+   "obj/display/minimap/init_mm.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/display/minimap/init_mm.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/display/minimap/calc_mm.c",
+   "-o",
+   "obj/display/minimap/calc_mm.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/display/minimap/calc_mm.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/display/minimap/print_line_mm.c",
+   "-o",
+   "obj/display/minimap/print_line_mm.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/display/minimap/print_line_mm.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/display/minimap/rotation_mm.c",
+   "-o",
+   "obj/display/minimap/rotation_mm.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/display/minimap/rotation_mm.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/display/display_rc.c",
+   "-o",
+   "obj/display/display_rc.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/display/display_rc.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/display/display_utils.c",
+   "-o",
+   "obj/display/display_utils.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/display/display_utils.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/display/display_hud.c",
+   "-o",
+   "obj/display/display_hud.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/display/display_hud.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/utils/check_approx.c",
+   "-o",
+   "obj/utils/check_approx.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/utils/check_approx.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/utils/print_line.c",
+   "-o",
+   "obj/utils/print_line.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/utils/print_line.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/utils/ft_map_len.c",
+   "-o",
+   "obj/utils/ft_map_len.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/utils/ft_map_len.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/utils/time_utils.c",
+   "-o",
+   "obj/utils/time_utils.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/utils/time_utils.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/utils/fps_counter.c",
+   "-o",
+   "obj/utils/fps_counter.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/utils/fps_counter.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/input/input.c",
+   "-o",
+   "obj/input/input.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/input/input.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/input/input_action.c",
+   "-o",
+   "obj/input/input_action.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/input/input_action.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/input/mouse.c",
+   "-o",
+   "obj/input/mouse.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/input/mouse.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/input/mouse_action.c",
+   "-o",
+   "obj/input/mouse_action.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/input/mouse_action.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/parsing/fonction.c",
+   "-o",
+   "obj/parsing/fonction.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/parsing/fonction.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/parsing/error_id.c",
+   "-o",
+   "obj/parsing/error_id.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/parsing/error_id.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/parsing/utils/parsing_utils1.c",
+   "-o",
+   "obj/parsing/utils/parsing_utils1.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/parsing/utils/parsing_utils1.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/parsing/utils/parsing_utils2.c",
+   "-o",
+   "obj/parsing/utils/parsing_utils2.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/parsing/utils/parsing_utils2.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/parsing/utils/parsing_utils3.c",
+   "-o",
+   "obj/parsing/utils/parsing_utils3.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/parsing/utils/parsing_utils3.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/raycasting/dda.c",
+   "-o",
+   "obj/raycasting/dda.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/raycasting/dda.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/raycasting/dda_x.c",
+   "-o",
+   "obj/raycasting/dda_x.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/raycasting/dda_x.c"
+ },
+ {
+  "directory": "/nfs/homes/mbico/Desktop/cub3d",
+  "arguments": [
+   "cc",
+   "-O3",
+   "-g",
+   "-c",
+   "src/raycasting/dda_y.c",
+   "-o",
+   "obj/raycasting/dda_y.o",
+   "-I",
+   "hdr",
+   "-I",
+   "./libft",
+   "-I",
+   "./MacroLibX/includes"
+  ],
+  "file": "src/raycasting/dda_y.c"
  }
 ]

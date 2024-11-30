@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 01:08:13 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/11/17 04:54:02 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/20 13:46:26 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	fill_id(char *ligne, char **id, t_verif param)
 	char		*type;
 
 	type = ft_strdup(cardinal[param]);
-	if (ft_strncmp(ligne, type, ft_strlen(type)) == 0)
+	if (type && ft_strncmp(ligne, type, ft_strlen(type)) == 0)
 	{
 		if (id[param] == NULL)
 		{

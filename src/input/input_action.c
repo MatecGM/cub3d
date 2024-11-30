@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 05:08:58 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/20 13:11:17 by mbico            ###   ########.fr       */
+/*   Updated: 2024/11/28 00:56:20 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_bool	check_collide(t_data *data, t_verif face)
 	pos = get_move_add(data, face, 5);
 	coord.x = (int)pos.x - (data->rc.side_dist.x < 0);
 	coord.y = (int)pos.y - (data->rc.side_dist.y < 0);
-	if (coord.y < 0 || coord.y > HEIGHT || coord.x < 0 || coord.x > WIDTH || data->map.content[coord.y][coord.x])
+	if (coord.y < 0 || coord.y > HEIGHT || coord.x < 0 || coord.x > WIDTH || data->map.content[coord.y][coord.x] == 1 || data->map.content[coord.y][coord.x] == 2)
 		return (TRUE);
 	return (FALSE);
 }
@@ -61,22 +61,22 @@ void	move(t_data *data)
 		data->player.pos = get_move_add(data, EA, 1);
 	if (get_input_state(data->input, 4) && !check_collide(data, WE))
 		data->player.pos = get_move_add(data, WE, 1);
-	data->rc.ax = cos(data->player.dir) * 5;
-	data->rc.ay = sin(data->player.dir) * 5;
+	data->rc.ax = cos(data->player.dir) * data->player.move_speed;
+	data->rc.ay = sin(data->player.dir) * data->player.move_speed;
 }
 
 void	cam(t_data *data)
 {
 	if (get_input_state(data->input, 79))
 	{
-		data->player.dir += PI / 75;
-		if (data->player.dir > 2 * PI)
+		data->player.dir += PI / 75 * data->player.rot_speed;
+		while (data->player.dir > 2 * PI)
 			data->player.dir -= PI * 2;
 	}
 	if (get_input_state(data->input, 80))
 	{
-		data->player.dir -= PI / 75;
-		if (data->player.dir < 0)
+		data->player.dir -= PI / 75 * data->player.rot_speed;
+		while (data->player.dir < 0)
 			data->player.dir += PI * 2;
 	}
 }
@@ -85,6 +85,28 @@ void	windows_input(t_data *data)
 {
 	if (get_input_state(data->input, 41))
 		close_safe(data);
+}
+
+void	hud_action(t_data *data, int kc)
+{
+	if (kc == 17)
+		data->hud.rotate_mm = !data->hud.rotate_mm;
+}
+
+void	interact_system(t_data *data, int kc)
+{
+	t_wh		wh;
+	t_wall		target;
+
+	if (kc == 8)
+	{
+		wh = dda(data, data->player.dir);
+		target = data->map.content[wh.rpos.y][wh.rpos.x];
+		if (target == DOOR_CLS)
+			data->map.content[wh.rpos.y][wh.rpos.x] = DOOR_OP;
+		else if (target== DOOR_OP)
+			data->map.content[wh.rpos.y][wh.rpos.x] = DOOR_CLS;
+	}
 }
 
 int	key_action(t_data *data)
