@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 05:01:10 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/28 01:05:53 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/09 20:33:11 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,12 @@ t_argb	texture_rel_color(t_data *data, t_wh wh, t_dcoord ptr)
 	target = data->map.content[wh.rpos.y][wh.rpos.x]; 
 	if (target == DOOR_CLS)
 		color = mono_text_rel_color(data, wh, ptr, data->map.txt[4]);
-	if (target == DOOR_OP)
+	else if (target == DOOR_OP)
 		color = mono_text_rel_color(data, wh, ptr, data->map.txt[5]);
+	else if (target == SPEAKER_OFF)
+		color = mono_text_rel_color(data, wh, ptr, data->map.anim_txtr.speaker[0]);
+	else if (target == SPEAKER_ON)
+		color = mono_text_rel_color(data, wh, ptr, data->map.anim_txtr.speaker[data->hud.frame_speaker]);
 	else if (target == WALL)
 		color = all_text_rel_color(data, wh, ptr, data->map.txt);
 	return (color);
@@ -89,10 +93,11 @@ void	display_wall(t_data *data, int x, int size, t_wh wh)
 	t_argb		color;
 	t_dcoord	ptr;
 
-	ptr.x = HEIGHT / 2 - size / 2;
-	ptr.y = HEIGHT / 2 + size / 2;
+	ptr.x = HEIGHT / 2 - size;
+	ptr.y = HEIGHT / 2 + size;
 	if (ptr.x < 0)
 		ptr.x = 0;
+	data->hud.frame_speaker = (time_now() - data->hud.start_anim) / 50 % SPEAKER_FRAME;
 	while (ptr.x < ptr.y && ptr.x < HEIGHT)
 	{
 		color = texture_rel_color(data, wh, ptr);

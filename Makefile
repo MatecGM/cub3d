@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/11/28 00:32:26 by mbico            ###   ########.fr        #
+#    Updated: 2024/12/09 23:01:58 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ CC = cc
 CFLAGS = -O3 -g #-Wall -Wextra -Werror
 NAME = cube3D
 HEADER = hdr
+AUDIO_LIB = -I ./lib ./lib/libmpg123.so ./lib/libportaudio.a 
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -65,13 +66,13 @@ MLX = MacroLibX/libmlx.so
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBFT) $(MLX) -I $(HEADER) -lSDL2 -lm
+	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBFT) $(MLX) -I $(HEADER) $(AUDIO_LIB) -lpthread -lm -lasound -lSDL2
 	@echo "$(GREEN)$(NAME) compilation successful !$(NC)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	@echo "$(YELLOW)Compiling $(notdir $<)...$(NC)"
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER) -I ./libft -I ./MacroLibX/includes
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER) -I $(AUDIO_LIB) -I ./libft -I ./MacroLibX/includes
 
 $(MLX):
 	@echo "$(PURPLE)Compiling MacroLibX...$(NC)"

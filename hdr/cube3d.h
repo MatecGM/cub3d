@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/28 01:03:44 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/09 23:02:14 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 # include <coord.h>
 # include <parsing.h>
+# include <ssys.h>
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -40,12 +41,17 @@
 # define DOOR_OP_PATH_TXT "./txtr/door_open.png"
 # define DOOR_CLS_PATH_TXT "./txtr/door_close.png"
 
+# define SPEAKER_FRAME 10
+# define SPEAKER_PATH "./txtr/speaker/speaker0.png"
+
 typedef enum e_wall
 {
 	FLOOR,
 	WALL,
 	DOOR_CLS,
 	DOOR_OP,
+	SPEAKER_OFF,
+	SPEAKER_ON,
 }	t_wall;
 
 typedef union u_argb
@@ -84,10 +90,16 @@ typedef	struct s_texture
 
 }	t_texture;
 
+typedef	struct	s_anim_txtr
+{
+	t_texture	*speaker;
+}	t_anim_txtr;
+
 typedef struct s_map
 {
 	int8_t		**content;
 	t_texture	*txt;
+	t_anim_txtr	anim_txtr;
 	t_dcoord	size;
 	t_argb		floor;
 	t_argb		sky;
@@ -106,7 +118,9 @@ typedef struct s_player
 
 typedef struct s_hud
 {
-	t_bool	rotate_mm;
+	t_bool		rotate_mm;
+	uint32_t	start_anim;
+	uint32_t	frame_speaker;
 }	t_hud;
 
 typedef struct	s_fps

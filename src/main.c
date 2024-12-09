@@ -6,11 +6,12 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/27 23:56:36 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/09 23:01:49 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
+#include "ssys.h"
 #include <cube3d.h>
 
 void	displaying(t_data *data)
@@ -46,6 +47,7 @@ int	main(void)
 
 	if (init_data(data, psg))
 		return (1);
+	//ssys_thread_init();
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_on_event(data->mlx, data->win, MLX_KEYDOWN, keydown, data);
 	mlx_on_event(data->mlx, data->win, MLX_KEYUP, keyup, data);

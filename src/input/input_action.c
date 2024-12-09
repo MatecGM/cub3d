@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 05:08:58 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/28 00:56:20 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/09 19:51:13 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_bool	check_collide(t_data *data, t_verif face)
 	pos = get_move_add(data, face, 5);
 	coord.x = (int)pos.x - (data->rc.side_dist.x < 0);
 	coord.y = (int)pos.y - (data->rc.side_dist.y < 0);
-	if (coord.y < 0 || coord.y > HEIGHT || coord.x < 0 || coord.x > WIDTH || data->map.content[coord.y][coord.x] == 1 || data->map.content[coord.y][coord.x] == 2)
+	if (coord.y < 0 || coord.y > data->map.size.y || coord.x < 0 || coord.x > data->map.size.x || data->map.content[coord.y][coord.x] == 1 || data->map.content[coord.y][coord.x] == 2 || data->map.content[coord.y][coord.x] == 4 || data->map.content[coord.y][coord.x] == 5)
 		return (TRUE);
 	return (FALSE);
 }
@@ -106,6 +106,13 @@ void	interact_system(t_data *data, int kc)
 			data->map.content[wh.rpos.y][wh.rpos.x] = DOOR_OP;
 		else if (target== DOOR_OP)
 			data->map.content[wh.rpos.y][wh.rpos.x] = DOOR_CLS;
+		else if (target == SPEAKER_OFF)
+			data->map.content[wh.rpos.y][wh.rpos.x] = SPEAKER_ON;
+		else if (target== SPEAKER_ON)
+		{
+			data->hud.start_anim = time_now();
+			data->map.content[wh.rpos.y][wh.rpos.x] = SPEAKER_OFF;
+		}
 	}
 }
 

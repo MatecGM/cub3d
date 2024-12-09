@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:58:43 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/28 01:05:02 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/09 20:33:58 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,33 @@ int32_t	**init_screen(void)
 		y++;
 	}
 	return (screen);
+}
+
+
+
+t_bool	init_anim_txtr(t_data *data, t_anim_txtr	*txtr)
+{
+	uint8_t	i;
+	char	*path;
+
+	txtr->speaker = ft_calloc(SPEAKER_FRAME + 1, sizeof(t_texture));
+	if (!txtr->speaker)
+		return (TRUE);
+	i = 0;
+	path = ft_strdup(SPEAKER_PATH);
+	if (!path)
+		return (TRUE);
+	while (i < SPEAKER_FRAME)
+	{
+		path[22] = i + '0';
+		txtr->speaker[i].img = mlx_png_file_to_image(data->mlx, path,
+								&txtr->speaker[i].size.x, &txtr->speaker[i].size.y);
+		i ++;
+	}
+	free(path);
+	return (FALSE);
+
+
 }
 
 t_bool	init_texture(t_data *data, t_parse *psg)
@@ -68,13 +95,15 @@ t_bool	init_data(t_data *data, t_parse *psg)
 	if (color_convert_rgb_hex(&data->map.floor.argb, data->psg->ress[4])
 		|| color_convert_rgb_hex(&data->map.sky.argb, data->psg->ress[5])
 		|| !data->screen
-		|| init_texture(data, psg))
+		|| init_texture(data, psg)
+		|| init_anim_txtr(data, &data->map.anim_txtr))
 		return (TRUE);
 	data->map.content = psg->map;
 	data->player.pos = psg->pos;
 	data->player.dir = convert_card_to_grad(psg->card);
 	data->player.target = WALL;
 	data->hud.rotate_mm = TRUE;
+	data->hud.start_anim = time_now();
 	data->input = 0;
 	data->map.size = ft_map_len(psg->map);
 	data->fps.time = time_now();
