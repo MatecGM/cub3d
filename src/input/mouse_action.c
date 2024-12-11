@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_action.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 10:01:04 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/28 00:36:55 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:18:54 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	mouse_direction(t_data *data)
 		data->player.dir -= PI * 2;
 	while (data->player.dir < 0)
 		data->player.dir += PI * 2;
-
 }
 
 void	mouse_action(t_data *data)

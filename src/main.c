@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 16:07:37 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:04:51 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 
 void	displaying(t_data *data)
 {
+	t_coord	center;
+
 	display_clear(data);
 	display_rc(data);
 	display_crosshair(data);
 	display_mm(data);
-	t_coord center;
 	center.x = 120;
 	center.y = 120;
 	circle_mm(data, center, 75, (t_argb)0xFFFFFFFF);

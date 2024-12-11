@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   print_line_mm.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:38:32 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/20 16:03:58 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:39:50 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 
-static void	ft_link_point_y(uint32_t **frame, t_dcoord p1, t_dcoord p2, t_argb color)
+static void	ft_link_point_y(
+uint32_t **frame, t_dcoord p1, t_dcoord p2, t_argb color)
 {
 	int		x;
 	int		y;
@@ -30,7 +31,7 @@ static void	ft_link_point_y(uint32_t **frame, t_dcoord p1, t_dcoord p2, t_argb c
 				+ p1.y < HEIGHT))
 		{
 			if (!put_pixel_on_mm(frame, p1.x + x, p1.y + y, color.argb))
-				break;
+				break ;
 		}
 		y += b;
 	}
@@ -58,7 +59,7 @@ void	print_line_mm(uint32_t **frame, t_dcoord p1, t_dcoord p2, t_argb color)
 					+ p1.y < HEIGHT))
 			{
 				if (!put_pixel_on_mm(frame, p1.x + x, p1.y + y, color.argb))
-					break;
+					break ;
 			}
 			x += b;
 		}

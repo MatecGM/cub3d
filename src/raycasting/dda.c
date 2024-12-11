@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:29:17 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/28 00:31:37 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:40:32 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ t_wh	dda(t_data *data, double dir)
 
 	px = dda_x(data, dir);
 	py = dda_y(data, dir);
-	dist.x = pow(px.x - data->player.pos.x, 2) + pow(px.y - data->player.pos.y, 2);
-	dist.y = pow(py.x - data->player.pos.x, 2) + pow(py.y - data->player.pos.y, 2);
+	dist.x = pow(px.x - data->player.pos.x, 2) \
+	+ pow(px.y - data->player.pos.y, 2);
+	dist.y = pow(py.x - data->player.pos.x, 2) \
+	+ pow(py.y - data->player.pos.y, 2);
 	wh.hit = px;
 	wh.face = (dir < PI);
 	if (in_map(data->map.size, px))
@@ -59,7 +61,7 @@ t_wh	dda(t_data *data, double dir)
 		wh.face = (dir < PI / 2 || dir > 3 * PI / 2) + 2;
 		wh.hit = py;
 		if (in_map(data->map.size, py))
-			wh = get_rel_pos(wh, py.x+ get_cdvec(dir).x, py.y);
+			wh = get_rel_pos(wh, py.x + get_cdvec(dir).x, py.y);
 	}
 	return (wh);
 }

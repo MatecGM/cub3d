@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   rotation_mm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:15:28 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/20 16:43:37 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:35:47 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <cube3d.h>
 #include <limits.h>
@@ -26,11 +25,14 @@ uint32_t	**rotate_mm(uint32_t **src, double dir)
 	while (ptr.y < SIZE_MM)
 	{
 		ptr.x = 0;
-		while(ptr.x < SIZE_MM)
+		while (ptr.x < SIZE_MM)
 		{
-			ptrm.x = (int)(75 + (ptr.x - 75) * cos(dir) + (ptr.y - 75) * sin(dir));
-			ptrm.y = (int)(75 - (ptr.x - 75) * sin(dir) + (ptr.y - 75) * cos(dir));
-			if (ptrm.x >= 0 && ptrm.x < SIZE_MM && ptrm.y >= 0 && ptrm.y < SIZE_MM)
+			ptrm.x = (int)(75 + (ptr.x - 75) * cos(dir) + \
+			(ptr.y - 75) * sin(dir));
+			ptrm.y = (int)(75 - (ptr.x - 75) * sin(dir) + \
+			(ptr.y - 75) * cos(dir));
+			if (ptrm.x >= 0 && ptrm.x < SIZE_MM && \
+			ptrm.y >= 0 && ptrm.y < SIZE_MM)
 				dst[ptr.y][ptr.x] = src[ptrm.y][ptrm.x];
 			ptr.x ++;
 		}

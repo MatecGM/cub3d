@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tab_pars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:49:53 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/11/27 20:45:05 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:22:15 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	count_max_x(char **map, int y)
 	}
 	return (count_x);
 }
+
 int8_t	**tab_size_x(char **map, int y, int8_t **tab)
 {
 	int	i;

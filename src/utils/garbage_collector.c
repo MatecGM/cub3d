@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:14:12 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/10 16:25:20 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:49:36 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_bool	gc_addback(void *adr, t_bool istab)
 	return (FALSE);
 }
 
-void	__attribute__((destructor)) free_gc (void)
+void	__attribute__((destructor))	free_gc(void)
 {
 	t_gc	*gc;
 

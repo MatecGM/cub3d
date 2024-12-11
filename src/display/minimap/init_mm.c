@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mm.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:28:55 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/20 16:39:35 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:35:13 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	display_mm_on_screen(t_data *data, uint32_t **frame)
 		while (ptr.x < 150)
 		{
 			if (frame[ptr.y][ptr.x] >> 24 != 0)
-				put_pixel_inscreen(data, ptr.x + PADDING_MM, ptr.y + PADDING_MM, (t_argb)frame[ptr.y][ptr.x]);
+				put_pixel_inscreen(data, ptr.x + PADDING_MM, \
+				ptr.y + PADDING_MM, (t_argb)frame[ptr.y][ptr.x]);
 			ptr.x ++;
 		}
 		ptr.y ++;

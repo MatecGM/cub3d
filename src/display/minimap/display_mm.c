@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   display_mm.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:19:58 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/09 19:15:58 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:38:46 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cube3d.h>
 #include <stdint.h>
 
-void	display_wall_block(t_data *data, t_coord ptr, t_dcoord sptr, uint32_t **frame)
+void	display_wall_block(
+t_data *data, t_coord ptr, t_dcoord sptr, uint32_t **frame)
 {
-	if ((ptr.x >= 0 && ptr.x < data->map.size.x && ptr.y >= 0 && ptr.y < data->map.size.y))
+	if ((ptr.x >= 0 && ptr.x < data->map.size.x && \
+	ptr.y >= 0 && ptr.y < data->map.size.y))
 	{
 		if (data->map.content[(int)ptr.y][(int)ptr.x] == WALL)
 			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCC000000);
@@ -27,18 +29,17 @@ void	display_wall_block(t_data *data, t_coord ptr, t_dcoord sptr, uint32_t **fra
 			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCCFFCCCC);
 		else if (data->map.content[(int)ptr.y][(int)ptr.x] == SPEAKER_ON)
 			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCCFF00FF);
-
 	}
-	else if (!(ptr.x >= 0 && ptr.x < data->map.size.x && ptr.y >= 0 && ptr.y < data->map.size.y))
+	else if (!(ptr.x >= 0 && ptr.x < data->map.size.x && \
+	ptr.y >= 0 && ptr.y < data->map.size.y))
 		put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCC000000);
-	
 }
 
 void	display_map_mm(t_data *data, uint32_t **frame)
 {
 	t_coord		ptr;
 	t_dcoord	sptr;
-	t_coord	i;
+	t_coord		i;
 
 	sptr.y = 0;
 	i.y = 0;
@@ -89,15 +90,14 @@ void	display_viewray(t_data *data, t_dcoord rel_pos, uint32_t **frame)
 void	display_mm(t_data *data)
 {
 	uint32_t	**frame;
+	t_dcoord	rel_pos;
 
 	frame = init_mm();
 	display_map_mm(data, frame);
-	t_dcoord rel_pos;
 	rel_pos.x = 75;
 	rel_pos.y = 75;
 	display_viewray(data, rel_pos, frame);
 	if (data->hud.rotate_mm)
 		frame = rotate_mm(frame, data->player.dir);
 	display_mm_on_screen(data, frame);
-	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_hud.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 11:03:18 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 18:16:27 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:28:29 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	display_crosshair(t_data *data)
 		color.argb = 0xFF000000 | ~data->screen[HEIGHT / 2][ptr];
 		put_pixel_inscreen(data, ptr, HEIGHT / 2, color);
 		ptr ++;
-	}	
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 09:54:55 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 10:52:37 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:18:38 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	mousedown(int kc, void *d)
 	{
 		data->player.old_dir = data->player.dir;
 		mlx_mouse_get_pos(data->mlx, &data->player.mouse_init.x,
-				&data->player.mouse_init.y);
+			&data->player.mouse_init.y);
 	}
 	data->input |= ((__uint128_t)1 << kc);
 	return (0);

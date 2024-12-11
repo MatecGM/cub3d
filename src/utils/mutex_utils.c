@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mutex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:41:09 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/10 22:58:40 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:50:24 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,3 @@ void	mutex_set_int(uint8_t *var, uint8_t new, pthread_mutex_t *mutex)
 	*var = new;
 	pthread_mutex_unlock(mutex);
 }
-

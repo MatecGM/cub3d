@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_mm.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:39:46 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/20 16:50:52 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:36:33 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ t_bool	circle_calc(int32_t x, int32_t y)
 	return (FALSE);
 }
 
-t_bool	put_pixel_on_mm(uint32_t **frame_mm, int32_t x, int32_t y, uint32_t color)
+t_bool	put_pixel_on_mm(
+uint32_t **frame_mm, int32_t x,
+int32_t y, uint32_t color)
 {
-	if (x >= 0 && x < SIZE_MM && y >= 0 && y < SIZE_MM  && circle_calc(x, y))
+	if (x >= 0 && x < SIZE_MM && y >= 0 && y < SIZE_MM && circle_calc(x, y))
 	{
 		frame_mm[y][x] = color;
 		return (TRUE);
