@@ -3,8 +3,8 @@ SO ./txtr/south.png
 WE ./txtr/west.png
 EA ./txtr/east.png
 
-F 0,100,150
-C 100,10,200
+F 97, 72, 43
+C 99,99,99
 
 11111111111111
 10000010000011

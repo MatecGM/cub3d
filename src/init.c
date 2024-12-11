@@ -6,12 +6,13 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:58:43 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/09 20:33:58 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/10 23:49:49 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include <cube3d.h>
+#include <pthread.h>
 
 int32_t	**init_screen(void)
 {
@@ -83,7 +84,7 @@ t_bool	init_texture(t_data *data, t_parse *psg)
 	return (FALSE);
 }
 
-t_bool	init_data(t_data *data, t_parse *psg)
+t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code)
 {
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cube3D");
@@ -107,5 +108,7 @@ t_bool	init_data(t_data *data, t_parse *psg)
 	data->input = 0;
 	data->map.size = ft_map_len(psg->map);
 	data->fps.time = time_now();
+	data->hud.mu_code = mu_code;
+	pthread_mutex_init(&data->hud.mumu_code, NULL);
 	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/09 23:01:49 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 16:07:37 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ int	main(void)
 {
 	t_data	data[1];
 	t_parse	psg[1];
+	uint8_t	mu_code;
 	t_coord	pos;
 
-	if (init_data(data, psg))
+	mu_code = 0;
+	if (init_data(data, psg, &mu_code))
 		return (1);
-	//ssys_thread_init();
+	ssys_thread_init(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_on_event(data->mlx, data->win, MLX_KEYDOWN, keydown, data);
 	mlx_on_event(data->mlx, data->win, MLX_KEYUP, keyup, data);

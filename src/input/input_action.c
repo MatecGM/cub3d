@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 05:08:58 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/09 19:51:13 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 16:07:28 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,13 @@ void	interact_system(t_data *data, int kc)
 		else if (target== DOOR_OP)
 			data->map.content[wh.rpos.y][wh.rpos.x] = DOOR_CLS;
 		else if (target == SPEAKER_OFF)
+		{
+			mutex_set_int(data->hud.mu_code, 1, &data->hud.mumu_code);
 			data->map.content[wh.rpos.y][wh.rpos.x] = SPEAKER_ON;
+		}
 		else if (target== SPEAKER_ON)
 		{
+			mutex_set_int(data->hud.mu_code, 0, &data->hud.mumu_code);
 			data->hud.start_anim = time_now();
 			data->map.content[wh.rpos.y][wh.rpos.x] = SPEAKER_OFF;
 		}

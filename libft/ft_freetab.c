@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 06:49:15 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/17 07:59:31 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/10 16:22:13 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_freetab(void **tab, int y)
 	int	i;
 
 	i = 0;
-	while (tab[i] && i < y)
+	while (tab && tab[i] && i < y)
 	{
 		free(tab[i]);
 		i ++;

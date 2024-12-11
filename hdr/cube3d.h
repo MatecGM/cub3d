@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/09 23:02:14 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/10 23:57:39 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <coord.h>
 # include <parsing.h>
 # include <ssys.h>
+# include <pthread.h>
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -121,6 +122,8 @@ typedef struct s_hud
 	t_bool		rotate_mm;
 	uint32_t	start_anim;
 	uint32_t	frame_speaker;
+	uint8_t		*mu_code;
+	pthread_mutex_t	mumu_code;
 }	t_hud;
 
 typedef struct	s_fps
@@ -144,6 +147,13 @@ typedef struct s_data
 	int32_t		**screen;
 	t_map		map;
 }				t_data;
+
+typedef struct	s_gc
+{
+	void		*adr;
+	t_bool		istab;
+	struct s_gc	*next;
+}	t_gc;
 
 void			displaying(t_data *data);
 void			print_line(t_data *data, t_dcoord p1, t_dcoord p2, t_argb color);
@@ -171,7 +181,7 @@ void	interact_system(t_data *data, int kc);
 t_coord	dda_x(t_data *data, double dir);
 t_coord	dda_y(t_data *data, double dir);
 
-t_bool		init_data(t_data *data, t_parse *psg);
+t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code);
 int32_t		**init_screen(void);
 
 t_bool		put_pixel_on_mm(uint32_t **frame_mm, int32_t x, int32_t y, uint32_t color);
@@ -186,5 +196,8 @@ void	fps_counter(t_data *data);
 unsigned int	time_now(void);
 t_dcoord	get_cdvec(double dir);
 void		close_safe(t_data *data);
+
+uint8_t	mutex_checker(uint8_t *nb, pthread_mutex_t *mutex);
+void	mutex_set_int(uint8_t *var, uint8_t new, pthread_mutex_t *mutex);
 
 #endif

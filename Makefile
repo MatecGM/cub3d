@@ -6,7 +6,7 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/12/09 23:01:58 by mbico            ###   ########.fr        #
+#    Updated: 2024/12/10 22:59:20 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS = main.c\
 	   utils/ft_map_len.c\
 	   utils/time_utils.c\
 	   utils/fps_counter.c\
+	   utils/mutex_utils.c\
 	   input/input.c\
 	   input/input_action.c\
 	   input/mouse.c\
@@ -51,6 +52,7 @@ SRCS = main.c\
 		raycasting/dda.c\
 		raycasting/dda_x.c\
 		raycasting/dda_y.c\
+		sound/ssys_init.c\
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
