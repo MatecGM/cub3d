@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 01:09:39 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/11/27 20:44:53 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 19:02:39 by yroussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	find_wall(char **map, int x, int y, int find_nb)
 	c = map[y][x];
 	if (ft_isdigit(c) || c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
-		if (find_nb == 1 && !ft_isdigit(c) || c == '0')
+		if ((find_nb == 1 && !ft_isdigit(c)) || c == '0')
 			return (1);
 		return (c - '0' + 1);
 	}

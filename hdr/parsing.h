@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:38:13 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/20 20:02:47 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 19:04:16 by yroussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	**map_parsing(char *map, int nb);
 int     ft_without_n(char c);
 char    *dup_without_n(const char *src);
 int     ft_is_space(char c);
-int     sdigit_comma(int i);
+int     isdigit_comma(int i);
 int     count_char(char *str, char c);
 int     count_tab(char **tab);
 double  convert_card_to_grad(char card);

@@ -6,15 +6,16 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/12/10 22:59:20 by mbico            ###   ########.fr        #
+#    Updated: 2024/12/11 19:10:02 by yroussea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -O3 -g #-Wall -Wextra -Werror
+CFLAGS = -O3 -g -Wall -Wextra -Werror
 NAME = cube3D
 HEADER = hdr
-AUDIO_LIB = -I ./lib ./lib/libmpg123.so ./lib/libportaudio.a 
+AUDIO_LIB =  lib/libmpg123.so lib/libportaudio.a
+AUDIO_LIB_HEADER = -I ./lib/portaudio/include -I ./lib/mpg123-1.31.2/src/libmpg123
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -31,6 +32,7 @@ SRCS = main.c\
 	   display/display_rc.c\
 	   display/display_utils.c\
 		display/display_hud.c\
+		display/display_text.c\
 	   utils/check_approx.c\
 	   utils/print_line.c\
 	   utils/ft_map_len.c\
@@ -39,6 +41,7 @@ SRCS = main.c\
 	   utils/mutex_utils.c\
 	   input/input.c\
 	   input/input_action.c\
+	   input/input_action_movement.c\
 	   input/mouse.c\
 	   input/mouse_action.c\
 		parsing/fonction.c\
@@ -53,6 +56,7 @@ SRCS = main.c\
 		raycasting/dda_x.c\
 		raycasting/dda_y.c\
 		sound/ssys_init.c\
+		sound/ssys_init_bis.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
@@ -68,13 +72,13 @@ MLX = MacroLibX/libmlx.so
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBFT) $(MLX) -I $(HEADER) $(AUDIO_LIB) -lpthread -lm -lasound -lSDL2
+	@$(CC) $(CFLAGS) $^ -o $(NAME) $(LIBFT) $(MLX) $(AUDIO_LIB) -I $(HEADER) $(AUDIO_LIB_HEADER) -lpthread -lm -lasound -lSDL2
 	@echo "$(GREEN)$(NAME) compilation successful !$(NC)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	@echo "$(YELLOW)Compiling $(notdir $<)...$(NC)"
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER) -I $(AUDIO_LIB) -I ./libft -I ./MacroLibX/includes
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER) $(AUDIO_LIB_HEADER) -I ./libft -I ./MacroLibX/includes
 
 $(MLX):
 	@echo "$(PURPLE)Compiling MacroLibX...$(NC)"

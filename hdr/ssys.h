@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:10:07 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 17:38:40 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 19:07:40 by yroussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,9 @@ typedef struct s_stream
 }	t_stream;
 
 void	ssys_thread_init(void *d);
+t_sound	get_sound(char *path);
+void	set_volume(int8_t *samples, size_t sample_count, float volume);
+void	read_sound_file(t_stream *stream, t_sound *sound, float volume);
+void	*stream_routine(void *arg);
 
 #endif

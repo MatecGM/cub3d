@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:33:20 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 18:35:02 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:59:22 by yroussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	circle_mm(t_data *data, t_coord center, uint32_t r, t_argb color)
 	t_coord		ptr;
 	t_coord		ptradd;
 	int32_t		m;
-	uint8_t		i;
 	double		delta;
 
 	ptr.x = 0;

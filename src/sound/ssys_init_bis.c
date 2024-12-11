@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:44:18 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/11 18:48:39 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:11:37 by yroussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	set_volume(int8_t *samples, size_t sample_count, float volume)
 	size_t	i;
 	int		adjusted_sample;
 
+	(void)sample_count;
 	i = 0;
 	while (i < BUF_SS)
 	{

@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/10 23:57:39 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/11 19:09:47 by yroussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ t_wh			dda(t_data *data, double dir);
 void			put_pixel_inscreen(t_data *data, int x, int y, t_argb color);
 void			display_rc(t_data *data);
 
+t_argb			get_png_pixel(t_data *data, t_texture txt, double x, t_dcoord ptr);
 t_bool			check_approx(double nb1, double nb2, int approx);
 void			display_clear(t_data *data);
 void			display_screen(t_data *data, int32_t **screen);
@@ -172,6 +173,7 @@ t_bool	get_input_state(__uint128_t input, int kc);
 int		keydown(int kc, void *d);
 int		keyup(int kc, void *d);
 int		key_action(t_data *data);
+void	move(t_data *data);
 int		mousedown(int kc, void *d);
 int		mouseup(int kc, void *d);
 void	mouse_action(t_data *data);
@@ -184,6 +186,7 @@ t_coord	dda_y(t_data *data, double dir);
 t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code);
 int32_t		**init_screen(void);
 
+t_argb		texture_rel_color(t_data *data, t_wh wh, t_dcoord ptr);
 t_bool		put_pixel_on_mm(uint32_t **frame_mm, int32_t x, int32_t y, uint32_t color);
 uint32_t	**init_mm(void);
 void		display_mm_on_screen(t_data *data, uint32_t **frame);

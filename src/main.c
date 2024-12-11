@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 18:04:51 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:59:09 by yroussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(void)
 	t_data	data[1];
 	t_parse	psg[1];
 	uint8_t	mu_code;
-	t_coord	pos;
 
 	mu_code = 0;
 	if (init_data(data, psg, &mu_code))

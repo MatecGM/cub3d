@@ -6,12 +6,13 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 05:01:10 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 18:25:32 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:01:33 by yroussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include <cube3d.h>
+#include <stdint.h>
 
 int	get_wall_size(t_coord pos, t_coord hit)
 {

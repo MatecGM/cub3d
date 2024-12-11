@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:09:18 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 18:45:58 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:10:37 by yroussea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	close_lib(uint8_t nb)
 {
 	uint8_t		i;
-	const void	(*exit_lib[2])(void) = \
+	static void	(*exit_lib[2])(void) = \
 	{(void *) Pa_Terminate, (void *)mpg123_exit};
 
 	i = 0;
@@ -42,7 +42,6 @@ t_bool	init_palib(void)
 t_bool	init_mpglib(void)
 {
 	int32_t	err;
-	char	*str;
 
 	err = mpg123_init();
 	if (err)
