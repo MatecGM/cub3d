@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_action.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 05:08:58 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 18:17:21 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:59:06 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,17 @@ void	interact_system(t_data *data, int kc)
 		target = data->map.content[wh.rpos.y][wh.rpos.x];
 		if (target == DOOR_CLS)
 			data->map.content[wh.rpos.y][wh.rpos.x] = DOOR_OP;
-		else if (target == DOOR_OP)
+		else if (target== DOOR_OP)
 			data->map.content[wh.rpos.y][wh.rpos.x] = DOOR_CLS;
 		else if (target == SPEAKER_OFF)
 		{
 			mutex_set_int(data->hud.mu_code, 1, &data->hud.mumu_code);
 			data->map.content[wh.rpos.y][wh.rpos.x] = SPEAKER_ON;
 		}
-		else if (target == SPEAKER_ON)
+		else if (target== SPEAKER_ON)
 		{
-			mutex_set_int(data->hud.mu_code, 0, &data->hud.mumu_code);
+			if (get_speaker_coord(data->map, 0).x == -1)
+				mutex_set_int(data->hud.mu_code, 0, &data->hud.mumu_code);
 			data->hud.start_anim = time_now();
 			data->map.content[wh.rpos.y][wh.rpos.x] = SPEAKER_OFF;
 		}

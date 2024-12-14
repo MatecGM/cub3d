@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 18:59:09 by yroussea         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:38:28 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 
 void	displaying(t_data *data)
 {
-	t_coord	center;
-
 	display_clear(data);
 	display_rc(data);
 	display_crosshair(data);
 	display_mm(data);
+	t_coord center;
 	center.x = 120;
 	center.y = 120;
 	circle_mm(data, center, 75, (t_argb)0xFFFFFFFF);
@@ -33,6 +32,8 @@ int	cube3d(void *d)
 	t_data	*data;
 
 	data = (t_data *)d;
+	
+	speaker_stereo(data);
 	key_action(data);
 	mouse_action(data);
 	displaying(data);
@@ -45,9 +46,11 @@ int	main(void)
 	t_data	data[1];
 	t_parse	psg[1];
 	uint8_t	mu_code;
+	t_coord	mu_stereo;
 
 	mu_code = 0;
-	if (init_data(data, psg, &mu_code))
+	mu_stereo = (t_coord){0, 0};
+	if (init_data(data, psg, &mu_code, &mu_stereo))
 		return (1);
 	ssys_thread_init(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);

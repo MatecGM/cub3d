@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 19:09:47 by yroussea         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:56:11 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,13 @@ typedef struct s_player
 
 typedef struct s_hud
 {
-	t_bool		rotate_mm;
-	uint32_t	start_anim;
-	uint32_t	frame_speaker;
-	uint8_t		*mu_code;
+	t_bool			rotate_mm;
+	uint32_t		start_anim;
+	uint32_t		frame_speaker;
+	uint8_t			*mu_code;
 	pthread_mutex_t	mumu_code;
+	t_coord			*mu_stereo;
+	pthread_mutex_t	mumu_stereo;
 }	t_hud;
 
 typedef struct	s_fps
@@ -162,37 +164,40 @@ t_wh			dda(t_data *data, double dir);
 void			put_pixel_inscreen(t_data *data, int x, int y, t_argb color);
 void			display_rc(t_data *data);
 
-t_argb			get_png_pixel(t_data *data, t_texture txt, double x, t_dcoord ptr);
 t_bool			check_approx(double nb1, double nb2, int approx);
 void			display_clear(t_data *data);
 void			display_screen(t_data *data, int32_t **screen);
 void			display_crosshair(t_data *data);
 t_dcoord		ft_map_len(int8_t **map);
+t_argb			get_png_pixel(t_data *data, t_texture txt, double x, t_dcoord ptr);
 
 t_bool	get_input_state(__uint128_t input, int kc);
 int		keydown(int kc, void *d);
 int		keyup(int kc, void *d);
 int		key_action(t_data *data);
-void	move(t_data *data);
 int		mousedown(int kc, void *d);
 int		mouseup(int kc, void *d);
 void	mouse_action(t_data *data);
 void	hud_action(t_data *data, int kc);
 void	interact_system(t_data *data, int kc);
+void	move(t_data *data);
 
 t_coord	dda_x(t_data *data, double dir);
 t_coord	dda_y(t_data *data, double dir);
 
-t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code);
+t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code, t_coord *mu_stereo);
 int32_t		**init_screen(void);
 
-t_argb		texture_rel_color(t_data *data, t_wh wh, t_dcoord ptr);
 t_bool		put_pixel_on_mm(uint32_t **frame_mm, int32_t x, int32_t y, uint32_t color);
 uint32_t	**init_mm(void);
 void		display_mm_on_screen(t_data *data, uint32_t **frame);
 void		display_mm(t_data *data);
 void	print_line_mm(uint32_t **frame, t_dcoord p1, t_dcoord p2, t_argb color);
 uint32_t	**rotate_mm(uint32_t **src, double dir);
+
+t_argb	all_text_rel_color(t_data *data, t_wh wh, t_dcoord ptr, t_texture *txt);
+t_argb	mono_text_rel_color(t_data *data, t_wh wh, t_dcoord ptr, t_texture txt);
+t_argb	texture_rel_color(t_data *data, t_wh wh, t_dcoord ptr);
 
 
 void	fps_counter(t_data *data);
@@ -202,5 +207,10 @@ void		close_safe(t_data *data);
 
 uint8_t	mutex_checker(uint8_t *nb, pthread_mutex_t *mutex);
 void	mutex_set_int(uint8_t *var, uint8_t new, pthread_mutex_t *mutex);
+void	mutex_set_coord(t_coord *var, t_coord new, pthread_mutex_t *mutex);
+t_coord	mutex_checker_coord(t_coord *var, pthread_mutex_t *mutex);
+
+void	speaker_stereo(t_data *data);
+t_coord	get_speaker_coord(t_map map, uint32_t occ);
 
 #endif

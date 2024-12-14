@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_action_movement.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:16:47 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/11 18:18:26 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:31:08 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,8 @@ t_coord	get_move_add(t_data *data, t_verif face, int c)
 t_bool	check_collide(t_data *data, t_verif face)
 {
 	t_coord		pos;
-	int			sign;
 	t_dcoord	coord;
 
-	sign = 1;
-	if (face == SO || face == WE)
-		sign = -1;
 	pos = get_move_add(data, face, 5);
 	coord.x = (int)pos.x - (data->rc.side_dist.x < 0);
 	coord.y = (int)pos.y - (data->rc.side_dist.y < 0);

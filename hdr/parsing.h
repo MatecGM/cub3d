@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:38:13 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 19:04:16 by yroussea         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:43:26 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,13 @@ char	find_orentation(char **map, int y, t_coord *pos);
 t_bool	parsing(char *path, t_parse *psg);
 char	**map_parsing(char *map, int nb);
 
+
 //UTILS
 
 int     ft_without_n(char c);
 char    *dup_without_n(const char *src);
 int     ft_is_space(char c);
-int     isdigit_comma(int i);
+int	    isdigit_comma(int i);
 int     count_char(char *str, char c);
 int     count_tab(char **tab);
 double  convert_card_to_grad(char card);

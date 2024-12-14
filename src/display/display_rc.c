@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   display_rc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 05:01:10 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 19:01:33 by yroussea         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:57:12 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include <cube3d.h>
-#include <stdint.h>
 
 int	get_wall_size(t_coord pos, t_coord hit)
 {
@@ -23,6 +22,7 @@ int	get_wall_size(t_coord pos, t_coord hit)
 	size = 1 / (double)dist * (HEIGHT / 2.0);
 	return (size);
 }
+
 
 t_argb	get_png_pixel(t_data *data, t_texture txt, double x, t_dcoord ptr)
 {
@@ -46,8 +46,7 @@ void	display_wall(t_data *data, int x, int size, t_wh wh)
 	ptr.y = HEIGHT / 2 + size;
 	if (ptr.x < 0)
 		ptr.x = 0;
-	data->hud.frame_speaker = \
-	(time_now() - data->hud.start_anim) / 50 % SPEAKER_FRAME;
+	data->hud.frame_speaker = (time_now() - data->hud.start_anim) / 50 % SPEAKER_FRAME;
 	while (ptr.x < ptr.y && ptr.x < HEIGHT)
 	{
 		color = texture_rel_color(data, wh, ptr);

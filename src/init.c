@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:58:43 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/11 18:05:51 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/12 20:43:22 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int32_t	**init_screen(void)
 	return (screen);
 }
 
+
+
 t_bool	init_anim_txtr(t_data *data, t_anim_txtr	*txtr)
 {
 	uint8_t	i;
@@ -52,11 +54,13 @@ t_bool	init_anim_txtr(t_data *data, t_anim_txtr	*txtr)
 	{
 		path[22] = i + '0';
 		txtr->speaker[i].img = mlx_png_file_to_image(data->mlx, path,
-				&txtr->speaker[i].size.x, &txtr->speaker[i].size.y);
+								&txtr->speaker[i].size.x, &txtr->speaker[i].size.y);
 		i ++;
 	}
 	free(path);
 	return (FALSE);
+
+
 }
 
 t_bool	init_texture(t_data *data, t_parse *psg)
@@ -76,10 +80,11 @@ t_bool	init_texture(t_data *data, t_parse *psg)
 			&data->map.txt[4].size.x, &data->map.txt[4].size.y);
 	data->map.txt[5].img = mlx_png_file_to_image(data->mlx, DOOR_OP_PATH_TXT,
 			&data->map.txt[5].size.x, &data->map.txt[5].size.y);
+	
 	return (FALSE);
 }
 
-t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code)
+t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code, t_coord	*mu_stereo)
 {
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cube3D");
@@ -105,5 +110,8 @@ t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code)
 	data->fps.time = time_now();
 	data->hud.mu_code = mu_code;
 	pthread_mutex_init(&data->hud.mumu_code, NULL);
+	data->hud.mu_stereo = mu_stereo;
+	pthread_mutex_init(&data->hud.mumu_stereo, NULL);
+
 	return (FALSE);
 }

@@ -6,11 +6,11 @@
 #    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/12/11 19:10:02 by yroussea         ###   ########.fr        #
+#    Updated: 2024/12/14 20:19:02 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
+CC = gcc
 CFLAGS = -O3 -g -Wall -Wextra -Werror
 NAME = cube3D
 HEADER = hdr
@@ -56,7 +56,7 @@ SRCS = main.c\
 		raycasting/dda_x.c\
 		raycasting/dda_y.c\
 		sound/ssys_init.c\
-		sound/ssys_init_bis.c
+		sound/ssys_speaker.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 

@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:49:10 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/20 18:34:44 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/14 19:31:47 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ int	verif_map(char **map, int *y)
 t_bool	color_convert_rgb_hex(uint32_t *color, char *rgb)
 {
 	char	**split;
-	int		i;
 
-	i = 0;
 	split = ft_split(rgb, ',');
 	if (!split)
 		return (TRUE);
