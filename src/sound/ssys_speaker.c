@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 21:16:00 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/14 19:47:36 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/14 23:39:17 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ t_coord	get_infl(t_coord spk, t_player player, t_coord infl)
 
 	dist = sqrt(pow(player.pos.x - spk.x, 2) + pow(player.pos.y - spk.y, 2));
 	rad = atan2(player.pos.y - spk.y, player.pos.x - spk.x);
-	orr = sin(fabs(player.dir - rad) - PI);
-	infl.x += (PI / 2.0 + orr * 1.2) / ((double)dist * 1500.) * 500.;
-	infl.y += (PI / 2.0 - orr * 1.2) / ((double)dist * 1500.) * 500.;
+	orr = sin(player.dir - rad);
+	infl.x += (PI / 2.0 - orr * 1.2) / (double)dist;
+	infl.y += (PI / 2.0 + orr * 1.2) / (double)dist;
+	printf("%f %f\n", infl.x, infl.y);
 	return (infl);
 }
 

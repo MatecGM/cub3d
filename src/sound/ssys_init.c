@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:09:18 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/14 20:51:35 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/14 23:06:52 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,16 +128,19 @@ void	read_sound_file(t_stream *stream, t_sound *sound)
 	size_t		bytes_read;
 	t_coord		vol;
 
-	while (mpg123_read(sound->mh, sound->buffer, BUF_SS, &bytes_read) == MPG123_OK && mutex_checker(stream->input.mu_code, stream->input.mumu_code))
+	while (mpg123_read(sound->mh, sound->buffer, BUF_SS, &bytes_read) == MPG123_OK)
 	{
-		vol = mutex_checker_coord(stream->input.mu_stereo, stream->input.mumu_stereo);
-		if (vol.x > 1)
-			vol.x = 1.;
-		if(vol.y > 1)
-			vol.y = 1.;
-		printf("%f %f\n", vol.x, vol.y);
-		apply_volume_per_channel(sound->buffer, vol.x, vol.y);
-		Pa_WriteStream(stream->stream, sound->buffer, bytes_read / sizeof(int32_t));mpg123_seek(stream->sound->mh, 0, SEEK_SET);
+		if (mutex_checker(stream->input.mu_code, stream->input.mumu_code))
+		{
+			vol = mutex_checker_coord(stream->input.mu_stereo, stream->input.mumu_stereo);
+			if (vol.x > 1)
+				vol.x = 1.;
+			if (vol.y > 1)
+				vol.y = 1.;
+			//printf("%f %f\n", vol.x, vol.y);
+			apply_volume_per_channel(sound->buffer, vol.x, vol.y);
+			Pa_WriteStream(stream->stream, sound->buffer, bytes_read / sizeof(int32_t));
+		}
 	}
 }
 
@@ -151,9 +154,8 @@ void	*stream_routine(void *arg)
 		if (mutex_checker(stream->input.mu_code, stream->input.mumu_code))
 		{
 			read_sound_file(stream, stream->sound);
-			mpg123_seek(stream->sound->mh, 0, SEEK_SET);
 		}
-			
+		mpg123_seek(stream->sound->mh, 0, SEEK_SET);
 		usleep(500);
 	}
 	return NULL;

@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:58:43 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/12 20:43:22 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/14 22:28:42 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ t_bool	init_texture(t_data *data, t_parse *psg)
 
 t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code, t_coord	*mu_stereo)
 {
+	if (parsing("maps/test_square.cub", psg))
+		return (TRUE);
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cube3D");
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (parsing("maps/test_square.cub", psg))
-		return (TRUE);
 	data->psg = psg;
 	data->screen = init_screen();
 	if (color_convert_rgb_hex(&data->map.floor.argb, data->psg->ress[4])
