@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:58:43 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/14 22:28:42 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 15:39:04 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,10 @@ t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code, t_coord	*mu_stere
 	data->hud.rotate_mm = TRUE;
 	data->hud.start_anim = time_now();
 	data->input = 0;
+	printf("%d\n", psg->map[0][0]);
 	data->map.size = ft_map_len(psg->map);
+	
+	printf("size map %d %d\n", data->map.size.x, data->map.size.y);
 	data->fps.time = time_now();
 	data->hud.mu_code = mu_code;
 	pthread_mutex_init(&data->hud.mumu_code, NULL);

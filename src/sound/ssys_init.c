@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:09:18 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/14 23:06:52 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 15:06:47 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ void	read_sound_file(t_stream *stream, t_sound *sound)
 				vol.x = 1.;
 			if (vol.y > 1)
 				vol.y = 1.;
-			//printf("%f %f\n", vol.x, vol.y);
 			apply_volume_per_channel(sound->buffer, vol.x, vol.y);
 			Pa_WriteStream(stream->stream, sound->buffer, bytes_read / sizeof(int32_t));
 		}

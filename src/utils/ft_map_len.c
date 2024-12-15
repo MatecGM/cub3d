@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 03:54:33 by mbico             #+#    #+#             */
-/*   Updated: 2024/11/20 20:03:14 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 15:31:12 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ t_dcoord	ft_map_len(int8_t **map)
 {
 	t_dcoord	size;
 
-	size.x = 0;
-	while (map[0][size.x] != ERROR)
-		size.x++;
 	size.y = 0;
-	while (map[size.y][size.x])
+	while (map && map[size.y] && map[size.y][0] != ERROR)
 		size.y++;
+	size.x = 0;
+	while (map && map[0] && map[0][size.x])
+		size.x++;
 	return (size);
 }
