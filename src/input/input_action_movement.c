@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:16:47 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:25 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 18:44:39 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_coord	get_move_add(t_data *data, t_verif face, int c)
 	t_coord	pos;
 	int		sign;
 	double	dir;
-	
+
 	sign = 1;
 	pos = data->player.pos;
 	if (face == SO || face == WE)
@@ -26,8 +26,8 @@ t_coord	get_move_add(t_data *data, t_verif face, int c)
 	if (face >= WE)
 	{
 		dir = data->player.dir + (PI / 2.0) * sign;
-        pos.x += cos(dir) * data->player.move_speed / 100. * c;
-        pos.y += sin(dir) * data->player.move_speed / 100. * c;
+		pos.x += cos(dir) * data->player.move_speed / 100. * c;
+		pos.y += sin(dir) * data->player.move_speed / 100. * c;
 	}
 	else
 	{
@@ -40,7 +40,7 @@ t_coord	get_move_add(t_data *data, t_verif face, int c)
 double	get_rad_with_face(double rad, t_verif face)
 {
 	if (face == NO)
-		return rad;
+		return (rad);
 	if (face == EA)
 		rad = rad - (3 * PI / 2);
 	else if (face == SO)
@@ -49,7 +49,6 @@ double	get_rad_with_face(double rad, t_verif face)
 		rad = rad - (PI / 2);
 	while (rad < 0)
 		rad += 2 * PI;
-	printf("%f\n", rad);
 	return (rad);
 }
 
@@ -63,7 +62,8 @@ double	check_collide(t_data *data, t_verif face)
 	step = 1;
 	rad = get_rad_with_face(data->player.dir, face);
 	wh = dda(data, rad);
-	dist = sqrt(pow(data->player.pos.x - wh.hit.x, 2) + pow(data->player.pos.y - wh.hit.y, 2));
+	dist = sqrt(pow(data->player.pos.x - wh.hit.x, 2) + pow(data->player.pos.y
+				- wh.hit.y, 2));
 	if (dist < 0.3 && data->map.content[wh.rpos.y][wh.rpos.x] != DOOR_OP)
 		step = dist - 0.3;
 	return (step);

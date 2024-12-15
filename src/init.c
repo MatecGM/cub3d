@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:58:43 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 17:18:09 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 18:44:10 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_bool	init_data(t_data *data, t_parse *psg, uint8_t *mu_code,
 t_coord	*mu_stereo)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cube3D");
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->psg = psg;
 	data->screen = init_screen();

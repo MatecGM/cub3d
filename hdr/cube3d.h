@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 16:47:14 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:38:10 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ void			mouse_action(t_data *data);
 void			hud_action(t_data *data, int kc);
 void			interact_system(t_data *data, int kc);
 void			move(t_data *data);
+int				window_cross(int kc, void *d);
 
 t_coord			dda_x(t_data *data, double dir);
 t_coord			dda_y(t_data *data, double dir);

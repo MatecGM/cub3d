@@ -6,14 +6,14 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:43:00 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 17:26:05 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 18:32:52 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 #include <parsing.h>
 
-void    free_map(char ***map)
+void	free_map(char ***map)
 {
 	if (!map || !*map)
 		return ;
@@ -24,9 +24,9 @@ void    free_map(char ***map)
 
 t_bool	parsing(char *path, t_parse *psg)
 {
-	int										y;
-	__attribute__((cleanup(free_map))) char	**map;
+	int	y;
 
+	__attribute__((cleanup(free_map))) char **map;
 	map = map_parsing(path, 0);
 	if (!map || verif_data(map, 0, path))
 		return (TRUE);
@@ -44,4 +44,3 @@ t_bool	parsing(char *path, t_parse *psg)
 	psg->map = tab_map(map, y, 0, psg->map);
 	return (FALSE);
 }
-

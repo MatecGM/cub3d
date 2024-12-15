@@ -6,13 +6,13 @@
 #    By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/12/15 16:37:04 by gadelbes         ###   ########.fr        #
+#    Updated: 2024/12/15 18:46:46 by mbico            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -O3 -g -Wall -Wextra -Werror
-NAME = cube3D
+NAME = cub3D
 HEADER = hdr
 AUDIO_LIB =  lib/libmpg123.so lib/libportaudio.a
 AUDIO_LIB_HEADER = -I ./lib/portaudio/include -I ./lib/mpg123-1.31.2/src/libmpg123
@@ -44,6 +44,7 @@ SRCS = main.c\
 	   input/input_action_movement.c\
 	   input/mouse.c\
 	   input/mouse_action.c\
+	   input/window_cross.c\
 		parsing/fonction.c\
 		parsing/parsing.c\
 		parsing/error_map.c\

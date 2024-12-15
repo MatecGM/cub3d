@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:49:53 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:38 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 18:32:08 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,29 +81,29 @@ int	tab_size_y(char **map, int y)
 
 int8_t	**tab_map(char **map, int y, int x, int8_t **tab)
 {
-	int	size_y;
-	int	max_x;
-	int	i;
-	int	j;
+	int			size_y;
+	int			max_x;
+	t_dcoord	p;
 
-	i = 0;
+	p.y = 0;
 	size_y = tab_size_y(map, y);
 	max_x = count_max_x(map, y) - 1;
-	while (i < size_y)
+	while (p.y < size_y)
 	{
 		x = 0;
-		j = 0;
-		while (j < max_x)
+		p.x = 0;
+		while (p.x < max_x)
 		{
-			tab[i][j] = find_wall(map, x, y, 1) - 1;
-			j++;
+			tab[p.y][p.x] = find_wall(map, x, y, 1) - 1;
+			if (find_wall(map, x, y, 1) == 0)
+				tab[p.y][p.x] = 1;
+			p.x++;
 			if (map[y][x] != '\0')
 				x++;
 		}
-		tab[i][j] = ERROR;
-		i++;
+		tab[p.y++][p.x] = ERROR;
 		y++;
 	}
-	tab[i][0] = ERROR;
+	tab[p.y][0] = ERROR;
 	return (tab);
 }

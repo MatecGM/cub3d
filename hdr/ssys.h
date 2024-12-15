@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:10:07 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 16:47:48 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/15 18:42:22 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_stream
 	t_input_ss		input;
 }	t_stream;
 
-void	ssys_thread_init(void *d);
+t_bool	ssys_thread_init(void *d);
 void	close_lib(uint8_t nb);
 void	*stream_routine(void *arg);
 
