@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/14 19:38:28 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 17:26:48 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 
 void	displaying(t_data *data)
 {
+	t_coord	center;
+
 	display_clear(data);
 	display_rc(data);
 	display_crosshair(data);
 	display_mm(data);
-	t_coord center;
 	center.x = 120;
 	center.y = 120;
 	circle_mm(data, center, 75, (t_argb)0xFFFFFFFF);
@@ -32,7 +33,6 @@ int	cube3d(void *d)
 	t_data	*data;
 
 	data = (t_data *)d;
-	
 	speaker_stereo(data);
 	key_action(data);
 	mouse_action(data);
@@ -41,13 +41,16 @@ int	cube3d(void *d)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	data[1];
 	t_parse	psg[1];
 	uint8_t	mu_code;
 	t_coord	mu_stereo;
+	
 
+	if (argc != 2 && parsing(argv[1], psg))
+		return (TRUE);
 	mu_code = 0;
 	mu_stereo = (t_coord){0, 0};
 	if (init_data(data, psg, &mu_code, &mu_stereo))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_absolute.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 05:52:30 by mbico             #+#    #+#             */
-/*   Updated: 2024/08/25 14:21:59 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 16:48:59 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@ double	ft_absolute(double nb)
 {
 	if (nb < 0)
 		return (nb * -1.0);
-	return (nb);	
+	return (nb);
 }

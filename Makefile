@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbico <mbico@student.42.fr>                +#+  +:+       +#+         #
+#    By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/12/14 20:19:02 by mbico            ###   ########.fr        #
+#    Updated: 2024/12/15 16:37:04 by gadelbes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS = main.c\
 		raycasting/dda_x.c\
 		raycasting/dda_y.c\
 		sound/ssys_init.c\
+		sound/ssys_utils.c\
 		sound/ssys_speaker.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)

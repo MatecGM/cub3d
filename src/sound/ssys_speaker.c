@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 21:16:00 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/14 23:39:17 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 17:15:48 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	speaker_stereo(t_data *data)
 	t_coord		p;
 	uint32_t	i;
 	t_coord		infl;
-	
+
 	p = get_speaker_coord(data->map, 0);
 	i = 1;
 	infl = (t_coord){0, 0};

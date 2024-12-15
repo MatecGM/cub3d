@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ssys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:10:07 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/14 20:11:30 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 16:47:48 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define BUF_SS 64
 # define RATE 44100
 
-typedef struct	s_sound
+typedef struct s_sound
 {
 	int32_t			channel;
 	int32_t			encoding;
@@ -34,7 +34,7 @@ typedef struct	s_sound
 	mpg123_handle	*mh;
 }	t_sound;
 
-typedef struct	s_input_ss
+typedef struct s_input_ss
 {
 	uint8_t			*mu_code;
 	pthread_mutex_t	*mumu_code;
@@ -53,5 +53,7 @@ typedef struct s_stream
 }	t_stream;
 
 void	ssys_thread_init(void *d);
+void	close_lib(uint8_t nb);
+void	*stream_routine(void *arg);
 
 #endif
