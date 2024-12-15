@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 18:43:30 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/15 19:01:40 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,18 @@ void	free_arg(char **arg)
 		free(*arg);
 }
 
+void	mlx_start(t_data *data)
+{
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	mlx_on_event(data->mlx, data->win, MLX_KEYDOWN, keydown, data);
+	mlx_on_event(data->mlx, data->win, MLX_KEYUP, keyup, data);
+	mlx_on_event(data->mlx, data->win, MLX_MOUSEUP, mouseup, data);
+	mlx_on_event(data->mlx, data->win, MLX_MOUSEDOWN, mousedown, data);
+	mlx_on_event(data->mlx, data->win, MLX_WINDOW_EVENT, window_cross, data);
+	mlx_loop_hook(data->mlx, cube3d, data);
+	mlx_loop(data->mlx);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data[1];
@@ -62,16 +74,10 @@ int	main(int argc, char **argv)
 		return (TRUE);
 	mu_code = 0;
 	mu_stereo = (t_coord){0, 0};
-	if (init_data(data, psg, &mu_code, &mu_stereo))
+	if (init_data(data, psg, &mu_code, &mu_stereo) || ssys_thread_init(data) || 1)
+	{
+		close_safe(data);
 		return (1);
-	if (ssys_thread_init(data))
-		return (1);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	mlx_on_event(data->mlx, data->win, MLX_KEYDOWN, keydown, data);
-	mlx_on_event(data->mlx, data->win, MLX_KEYUP, keyup, data);
-	mlx_on_event(data->mlx, data->win, MLX_MOUSEUP, mouseup, data);
-	mlx_on_event(data->mlx, data->win, MLX_MOUSEDOWN, mousedown, data);
-	mlx_on_event(data->mlx, data->win, MLX_WINDOW_EVENT, window_cross, data);
-	mlx_loop_hook(data->mlx, cube3d, data);
-	mlx_loop(data->mlx);
+	}
+	mlx_start(data);
 }
