@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 07:43:53 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 17:56:30 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/16 15:42:22 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,19 @@ void	close_texture(void *mlx, t_texture *txt)
 
 void	close_safe(t_data *data)
 {
+	int len;
+
+	len = 0;
 	close_texture(data->mlx, data->map.txt);
 	close_speaker_text(data->mlx, data->map.anim_txtr);
-	ft_freetab((void *)data->screen, HEIGHT);
+	while (data->screen && len != HEIGHT)
+	{
+		free(data->screen[len]);
+		len++;
+	}
+	free(data->screen);
 	ft_freetab((void *)data->map.content, data->map.size.y);
+	ft_freetab((void *)data->psg->ress, INT_MAX);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_display(data->mlx);
