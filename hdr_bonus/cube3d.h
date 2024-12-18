@@ -213,6 +213,7 @@ void			fps_counter(t_data *data);
 unsigned int	time_now(void);
 t_dcoord		get_cdvec(double dir);
 void			close_safe(t_data *data);
+void			ft_freetab_occ(void **tab, int y);
 
 uint8_t			mutex_checker(uint8_t *nb, pthread_mutex_t *mutex);
 void			mutex_set_int(uint8_t *var, uint8_t new, \

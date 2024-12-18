@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:58:43 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 18:44:10 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 23:38:25 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ t_coord	*mu_stereo)
 	data->input = 0;
 	data->map.size = ft_map_len(psg->map);
 	data->fps.time = time_now();
+	*mu_stereo = (t_coord){0, 0};
 	data->hud.mu_code = mu_code;
 	pthread_mutex_init(&data->hud.mumu_code, NULL);
 	data->hud.mu_stereo = mu_stereo;

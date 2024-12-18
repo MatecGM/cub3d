@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 21:38:24 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/18 23:24:35 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	main(int argc, char **argv)
 	t_data	data[1];
 	t_parse	psg[1];
 
+	psg[0] = (t_parse){0};
 	__attribute__((cleanup(free_arg))) char *arg;
 	arg = NULL;
 	if (argc == 2)

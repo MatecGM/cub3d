@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:49:10 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:34 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 22:51:07 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_bool	color_convert_rgb_hex(uint32_t *color, char *rgb)
 	*color = 0xFF000000;
 	*color |= ft_atoi(split[0]) << 16;
 	*color |= ft_atoi(split[1]) << 8;
-	*color |= ft_atoi(split[2]);
+	*color |= ft_atoi(split[2]); 
 	ft_freetab((void *)split, 3);
 	return (FALSE);
 }

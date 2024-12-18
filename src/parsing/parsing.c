@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:43:00 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 21:16:27 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/18 23:03:30 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ t_bool	parsing(char *path, t_parse *psg)
 	y = find_map(map, 0, 0);
 	psg->card = find_orentation(map, y, &psg->pos);
 	psg->map = ft_calloc(tab_size_y(map, y) + 1, sizeof(t_bool *));
-	psg->map = tab_size_x(map, y, psg->map);
 	if (!psg->map)
 		return (TRUE);
-	psg->map = tab_map(map, y, 0, psg->map);
+	tab_size_x(map, y, psg->map);
+	tab_map(map, y, 0, psg->map);
 	return (FALSE);
 }

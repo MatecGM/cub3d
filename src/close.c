@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 07:43:53 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 21:19:39 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/18 23:12:16 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,14 @@ void	close_safe(t_data *data)
 		len++;
 	}
 	free(data->screen);
-	ft_freetab((void *)data->map.content, data->map.size.y);
+	len = 0;
+	while (data->map.content[len][0] != ERROR)
+	{
+		free(data->map.content[len]);
+		len ++;
+	}
+	free(data->map.content[len]);
+	free(data->map.content);
 	ft_freetab((void *)data->psg->ress, INT_MAX);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_image(data->mlx, data->img);

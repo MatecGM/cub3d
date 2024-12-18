@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fonction.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 01:09:39 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:36 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 23:31:01 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	find_map(char **map, int x, int y)
 		x = 0;
 		while (ft_is_space(map[y][x]) && map[y][x] != '\n')
 			x++;
-		if (map[y][x] == '1' && count >= 6)
+		if (map[y][x] == '1' && count == 6)
 			return (y);
 		else if (map[y][x] != '\n')
 			count++;

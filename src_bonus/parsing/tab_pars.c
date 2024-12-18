@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tab_pars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:49:53 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/15 18:32:08 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 23:31:23 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int8_t	**tab_size_x(char **map, int y, int8_t **tab)
 		tab[i] = ft_calloc(count_max_x(map, y) + 1, sizeof(t_bool));
 		if (!tab[i])
 		{
-			ft_freetab((void *)tab, i);
+			ft_freetab((void *)tab, i + 1);
 			return (NULL);
 		}
 		i++;

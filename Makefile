@@ -6,12 +6,12 @@
 #    By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 15:23:49 by fparis            #+#    #+#              #
-#    Updated: 2024/12/18 18:30:59 by mbico            ###   ########.fr        #
+#    Updated: 2024/12/18 21:45:32 by gadelbes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -O3 -g
+CFLAGS = -O3 -g -Wall -Wextra -Werror
 NAME = cub3D
 NAME_BONUS = cub3D_bonus
 HEADER = hdr
@@ -82,6 +82,7 @@ SRCS_BONUS = main.c\
 	   utils/time_utils.c\
 	   utils/fps_counter.c\
 	   utils/mutex_utils.c\
+	   utils/ft_freetab_occ.c\
 	   input/input.c\
 	   input/input_action.c\
 	   input/input_action_movement.c\

@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 01:08:13 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/18 21:38:16 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/18 23:17:15 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ int	number_rgb(char **id_tab, int nb)
 	{
 		if (ft_strlen(split_verif[i]) > 3 || atoi(split_verif[i]) > 255)
 		{
-			free(split_verif);
+			ft_freetab((void **)split_verif, INT_MAX);
 			return (printf("Error\nRGB Format\n"));
 		}
 		i++;
 	}
-	free(split_verif);
+	ft_freetab((void **)split_verif, INT_MAX);
 	return (0);
 }
 

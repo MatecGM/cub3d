@@ -3,10 +3,8 @@ SO ./txtr/south.png
 NO ./txtr/north.png
 EA ./txtr/east.png
 
-F 17,18,9
+F 17,18,255
 C 9,86,99
-
-sdsadsadsadasdasd
 
 111111
 100101

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_id.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 01:08:13 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/18 19:20:19 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 23:33:15 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	fill_id(char *ligne, char **id, t_verif param)
 			return (1);
 		}
 		free(type);
+		ft_freetab_occ((void **)id, 7);
 		return (-1);
 	}
 	free(type);
@@ -52,13 +53,13 @@ int	one_ligne(char **id, char *ligne)
 			nb++;
 		else if (result == -1)
 		{
-			ft_freetab((void **)id, INT_MAX);
+			ft_freetab_occ((void **)id, 7);
 			return (-1);
 		}
 		else
 			return (0);
 	}
-	ft_freetab((void **)id, INT_MAX);
+	ft_freetab_occ((void **)id, 7);
 	return (-1);
 }
 
@@ -104,12 +105,12 @@ int	number_rgb(char **id_tab, int nb)
 	{
 		if (ft_strlen(split_verif[i]) > 3 || atoi(split_verif[i]) > 255)
 		{
-			free(split_verif);
+			ft_freetab((void **)split_verif, INT_MAX);
 			return (printf("Error\nRGB Format\n"));
 		}
 		i++;
 	}
-	free(split_verif);
+	ft_freetab((void **)split_verif, INT_MAX);
 	return (0);
 }
 

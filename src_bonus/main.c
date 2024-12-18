@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 20:36:11 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 23:38:29 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,18 @@ int	main(int argc, char **argv)
 	uint8_t	mu_code;
 	t_coord	mu_stereo;
 
+	psg[0] = (t_parse){0};
 	__attribute__((cleanup(free_arg))) char *arg;
 	arg = NULL;
 	if (argc == 2)
 		arg = ft_strdup(argv[1]);
 	if (!arg || argc != 2 || parsing(arg, psg))
 	{
+		ft_freetab_occ((void **)psg->ress, 7);
 		ft_putstr_fd("Parsing init failed\n", 2);
 		return (TRUE);
 	}
 	mu_code = 0;
-	mu_stereo = (t_coord){0, 0};
 	if (init_data(data, psg, &mu_code, &mu_stereo) || ssys_thread_init(data))
 	{
 		ft_putstr_fd("Data init failed\n", 2);
