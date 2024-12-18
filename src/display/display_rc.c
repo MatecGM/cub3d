@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 05:01:10 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:22 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 18:23:40 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	display_wall(t_data *data, int x, int size, t_wh wh)
 	ptr.y = HEIGHT / 2 + size;
 	if (ptr.x < 0)
 		ptr.x = 0;
-	data->hud.frame_speaker = \
-		(time_now() - data->hud.start_anim) / 50 % SPEAKER_FRAME;
 	while (ptr.x < ptr.y && ptr.x < HEIGHT)
 	{
 		color = texture_rel_color(data, wh, ptr);

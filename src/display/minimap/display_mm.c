@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:19:58 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:19 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 18:23:11 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,8 @@ t_data *data, t_coord ptr, t_dcoord sptr, uint32_t **frame)
 	if ((ptr.x >= 0 && ptr.x < data->map.size.x && \
 	ptr.y >= 0 && ptr.y < data->map.size.y))
 	{
-		if (data->map.content[(int)ptr.y][(int)ptr.x] == WALL)
+		if (data->map.content[(int)ptr.y][(int)ptr.x] == 1)
 			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCC000000);
-		else if (data->map.content[(int)ptr.y][(int)ptr.x] == DOOR_CLS)
-			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCCFF0000);
-		else if (data->map.content[(int)ptr.y][(int)ptr.x] == DOOR_OP)
-			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCC00FF00);
-		else if (data->map.content[(int)ptr.y][(int)ptr.x] == SPEAKER_OFF)
-			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCCFFCCCC);
-		else if (data->map.content[(int)ptr.y][(int)ptr.x] == SPEAKER_ON)
-			put_pixel_on_mm(frame, sptr.x, sptr.y, 0xCCFF00FF);
 	}
 	else if (!(ptr.x >= 0 && ptr.x < data->map.size.x && \
 	ptr.y >= 0 && ptr.y < data->map.size.y))

@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:46:09 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:26 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 18:21:00 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	keydown(int kc, void *d)
 
 	data = (t_data *)d;
 	hud_action(data, kc);
-	interact_system(data, kc);
 	data->input |= ((__uint128_t)1 << kc);
 	return (0);
 }

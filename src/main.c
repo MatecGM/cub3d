@@ -6,12 +6,11 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 17:22:02 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:20:10 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "ssys.h"
 #include <cube3d.h>
 
 void	displaying(t_data *data)
@@ -33,7 +32,6 @@ int	cube3d(void *d)
 	t_data	*data;
 
 	data = (t_data *)d;
-	speaker_stereo(data);
 	key_action(data);
 	mouse_action(data);
 	displaying(data);
@@ -63,8 +61,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data[1];
 	t_parse	psg[1];
-	uint8_t	mu_code;
-	t_coord	mu_stereo;
 
 	__attribute__((cleanup(free_arg))) char *arg;
 	arg = NULL;
@@ -72,12 +68,11 @@ int	main(int argc, char **argv)
 		arg = ft_strdup(argv[1]);
 	if (!arg || argc != 2 || parsing(arg, psg))
 		return (TRUE);
-	mu_code = 0;
-	mu_stereo = (t_coord){0, 0};
-	if (init_data(data, psg, &mu_code, &mu_stereo) || ssys_thread_init(data))
+	if (init_data(data, psg))
 	{
 		close_safe(data);
-		return (1);
+		return (TRUE);
 	}
 	mlx_start(data);
+	return (FALSE);
 }

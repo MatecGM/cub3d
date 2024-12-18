@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:16:47 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/15 18:44:39 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 18:25:28 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ double	check_collide(t_data *data, t_verif face)
 	wh = dda(data, rad);
 	dist = sqrt(pow(data->player.pos.x - wh.hit.x, 2) + pow(data->player.pos.y
 				- wh.hit.y, 2));
-	if (dist < 0.3 && data->map.content[wh.rpos.y][wh.rpos.x] != DOOR_OP)
+	if (dist < 0.3)
 		step = dist - 0.3;
 	return (step);
 }

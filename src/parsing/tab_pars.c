@@ -6,11 +6,10 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:49:53 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/15 18:32:08 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 18:36:42 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
 #include <parsing.h>
 
 int	count_max_x(char **map, int y)
@@ -95,7 +94,7 @@ int8_t	**tab_map(char **map, int y, int x, int8_t **tab)
 		while (p.x < max_x)
 		{
 			tab[p.y][p.x] = find_wall(map, x, y, 1) - 1;
-			if (find_wall(map, x, y, 1) == 0)
+			if (find_wall(map, x, y, 1) != 1)
 				tab[p.y][p.x] = 1;
 			p.x++;
 			if (map[y][x] != '\0')

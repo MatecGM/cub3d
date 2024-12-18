@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 17:08:19 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:18:50 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 
 # include <coord.h>
 # include <parsing.h>
-# include <ssys.h>
 # include <pthread.h>
 
 # define WIDTH 1280
@@ -39,22 +38,6 @@
 # define PADDING_MM 45
 # define RADIUS_MM 75
 
-# define DOOR_OP_PATH_TXT "./txtr/door_open.png"
-# define DOOR_CLS_PATH_TXT "./txtr/door_close.png"
-
-# define SPEAKER_FRAME 10
-# define SPEAKER_PATH "./txtr/speaker/speaker0.png"
-
-typedef enum e_wall
-{
-	FLOOR,
-	WALL,
-	DOOR_CLS,
-	DOOR_OP,
-	SPEAKER_OFF,
-	SPEAKER_ON,
-}	t_wall;
-
 typedef union u_argb
 {
 	uint32_t	argb;
@@ -67,7 +50,6 @@ typedef union u_argb
 	};
 }	t_argb;
 
-//wall hit
 typedef struct s_wh
 {
 	t_coord		hit;
@@ -91,16 +73,10 @@ typedef struct s_texture
 
 }	t_texture;
 
-typedef struct s_anim_txtr
-{
-	t_texture	*speaker;
-}	t_anim_txtr;
-
 typedef struct s_map
 {
 	int8_t		**content;
 	t_texture	*txt;
-	t_anim_txtr	anim_txtr;
 	t_dcoord	size;
 	t_argb		floor;
 	t_argb		sky;
@@ -114,18 +90,11 @@ typedef struct s_player
 	t_coord		pos;
 	double		move_speed;
 	double		rot_speed;
-	t_wall		target;
 }	t_player;
 
 typedef struct s_hud
 {
 	t_bool			rotate_mm;
-	uint32_t		start_anim;
-	uint32_t		frame_speaker;
-	uint8_t			*mu_code;
-	pthread_mutex_t	mumu_code;
-	t_coord			*mu_stereo;
-	pthread_mutex_t	mumu_stereo;
 }	t_hud;
 
 typedef struct s_fps
@@ -148,15 +117,7 @@ typedef struct s_data
 	t_player	player;
 	int32_t		**screen;
 	t_map		map;
-	t_stream	*stream;
 }				t_data;
-
-typedef struct s_gc
-{
-	void		*adr;
-	t_bool		istab;
-	struct s_gc	*next;
-}	t_gc;
 
 void			displaying(t_data *data);
 void			print_line(t_data *data, t_dcoord p1, \
@@ -190,8 +151,7 @@ int				window_cross(int kc, void *d);
 t_coord			dda_x(t_data *data, double dir);
 t_coord			dda_y(t_data *data, double dir);
 
-t_bool			init_data(t_data *data, t_parse *psg, uint8_t *mu_code, \
-				t_coord *mu_stereo);
+t_bool			init_data(t_data *data, t_parse *psg);
 int32_t			**init_screen(void);
 
 t_bool			put_pixel_on_mm(uint32_t **frame_mm, int32_t x, \

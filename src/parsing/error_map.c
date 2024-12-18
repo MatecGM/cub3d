@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 13:25:55 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:35 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 18:40:41 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	map_write_check(char **map, int x, int y, int limit)
 		while (map[y][x])
 		{
 			if (map[y][x] != 'N' && map[y][x] != 'S' && map[y][x] != 'E'
-				&& !ft_isdigit(map[y][x]) && map[y][x] != 'W'
+				&& map[y][x] != '1' && map[y][x] != '0' && map[y][x] != 'W'
 				&& map[y][x] != ' ' && map[y][x] != '\n')
 				return (printf("Error\nMap\n"));
 			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
