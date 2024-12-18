@@ -6,11 +6,12 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 18:20:10 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 19:24:26 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
+#include "printf/ft_printf.h"
 #include <cube3d.h>
 
 void	displaying(t_data *data)
@@ -67,9 +68,13 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 		arg = ft_strdup(argv[1]);
 	if (!arg || argc != 2 || parsing(arg, psg))
+	{
+		ft_printf("Parsing init failled\n");
 		return (TRUE);
+	}
 	if (init_data(data, psg))
 	{
+		ft_printf("Data init failled\n");
 		close_safe(data);
 		return (TRUE);
 	}

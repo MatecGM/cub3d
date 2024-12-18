@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:10:07 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 18:42:22 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 19:10:29 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <pthread.h>
 # include <coord.h>
 
-# define MU_PATH "./mu_sfx/Polyphia_Playing_God.mp3"
+# define MU_PATH "./mu_sfx/outstanding.mp3"
 # define BUF_SS 64
 # define RATE 44100
 

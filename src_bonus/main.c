@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 18:11:49 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 19:24:53 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,15 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 		arg = ft_strdup(argv[1]);
 	if (!arg || argc != 2 || parsing(arg, psg))
+	{
+		ft_printf("Parsing init failled\n");
 		return (TRUE);
+	}
 	mu_code = 0;
 	mu_stereo = (t_coord){0, 0};
 	if (init_data(data, psg, &mu_code, &mu_stereo) || ssys_thread_init(data))
 	{
+		ft_printf("Data init failled\n");
 		close_safe(data);
 		return (TRUE);
 	}

@@ -6,10 +6,11 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 01:08:13 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:34 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 19:20:19 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cube3d.h"
 #include <parsing.h>
 
 int	fill_id(char *ligne, char **id, t_verif param)
@@ -26,10 +27,13 @@ int	fill_id(char *ligne, char **id, t_verif param)
 			while (ft_without_n(*ligne))
 				ligne++;
 			id[param] = dup_without_n(ligne);
+			free(type);
 			return (1);
 		}
+		free(type);
 		return (-1);
 	}
+	free(type);
 	return (0);
 }
 
@@ -47,10 +51,14 @@ int	one_ligne(char **id, char *ligne)
 		if (result == 0)
 			nb++;
 		else if (result == -1)
+		{
+			ft_freetab((void **)id, INT_MAX);
 			return (-1);
+		}
 		else
 			return (0);
 	}
+	ft_freetab((void **)id, INT_MAX);
 	return (-1);
 }
 
