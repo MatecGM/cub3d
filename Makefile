@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -O3 -g -Wall -Wextra -Werror
+CFLAGS = -O3 -g
 NAME = cub3D
 NAME_BONUS = cub3D_bonus
 HEADER = hdr
@@ -42,6 +42,7 @@ SRCS = main.c\
 	   utils/print_line.c\
 	   utils/ft_map_len.c\
 	   utils/time_utils.c\
+	   utils/ft_freetab_occ.c \
 	   utils/fps_counter.c\
 	   utils/mutex_utils.c\
 	   input/input.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:47:27 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:31 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 21:03:06 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*dup_without_n(const char *src)
 	size = 0;
 	size_two = 0;
 	dest = ft_calloc(sizeof(char), (ft_strlen(src) + 1));
-	if (dest == NULL)
+	if (!dest)
 		return (NULL);
 	while (src[size_two] != '\n')
 	{

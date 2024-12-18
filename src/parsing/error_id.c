@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_id.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 01:08:13 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/18 19:23:20 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 21:38:16 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	fill_id(char *ligne, char **id, t_verif param)
 			return (1);
 		}
 		free(type);
+		ft_freetab_occ((void **)id, 7);
 		return (-1);
 	}
 	free(type);
@@ -51,14 +52,11 @@ int	one_ligne(char **id, char *ligne)
 		if (result == 0)
 			nb++;
 		else if (result == -1)
-		{
-			ft_freetab((void **)id, INT_MAX);
 			return (-1);
-		}
 		else
 			return (0);
 	}
-	ft_freetab((void **)id, INT_MAX);
+	ft_freetab_occ((void **)id, 7);
 	return (-1);
 }
 

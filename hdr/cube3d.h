@@ -183,5 +183,6 @@ t_coord			mutex_checker_coord(t_coord *var, pthread_mutex_t *mutex);
 
 void			speaker_stereo(t_data *data);
 t_coord			get_speaker_coord(t_map map, uint32_t occ);
+void			ft_freetab_occ(void **tab, int y);
 
 #endif

@@ -1,10 +1,12 @@
 WE ./txtr/west.png
 SO ./txtr/south.png
-N ./txtr/north.png
+NO ./txtr/north.png
 EA ./txtr/east.png
 
 F 17,18,9
-C 9,86,14
+C 9,86,99
+
+sdsadsadsadasdasd
 
 111111
 100101
