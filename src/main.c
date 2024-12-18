@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 19:01:40 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 17:22:02 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	main(int argc, char **argv)
 		return (TRUE);
 	mu_code = 0;
 	mu_stereo = (t_coord){0, 0};
-	if (init_data(data, psg, &mu_code, &mu_stereo) || ssys_thread_init(data) || 1)
+	if (init_data(data, psg, &mu_code, &mu_stereo) || ssys_thread_init(data))
 	{
 		close_safe(data);
 		return (1);

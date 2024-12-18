@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ssys_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:09:18 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 18:45:18 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 17:09:34 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ t_bool	ssys_thread_init(void *d)
 		return (TRUE);
 	}
 	sound[0] = get_sound(MU_PATH);
+	data->stream = stream;
 	if (pthread_create(&stream->thread, NULL, stream_routine, stream))
 		return (TRUE);
 	return (FALSE);

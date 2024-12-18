@@ -2,7 +2,7 @@ NAME = libft.a
 
 CC = cc
 
-FLAGS = -Werror -Wextra -Wall -fPIE
+FLAGS = -Werror -Wextra -Wall -fPIE -g
 
 LIB = libft.h gnl/get_next_line.h printf/ft_printf.h
 
