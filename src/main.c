@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 19:24:26 by mbico            ###   ########.fr       */
+/*   Updated: 2024/12/18 20:35:17 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ int	main(int argc, char **argv)
 		arg = ft_strdup(argv[1]);
 	if (!arg || argc != 2 || parsing(arg, psg))
 	{
-		ft_printf("Parsing init failled\n");
+		ft_putstr_fd("Parsing init failed\n", 2);
 		return (TRUE);
 	}
 	if (init_data(data, psg))
 	{
-		ft_printf("Data init failled\n");
+		ft_putstr_fd("Data init failed\n", 2);
 		close_safe(data);
 		return (TRUE);
 	}

@@ -1,0 +1,13 @@
+WE ./txtr/west.png
+SO ./txtr/south.png
+N ./txtr/north.png
+EA ./txtr/east.png
+
+F 17,18,9
+C 9,86,14
+
+111111
+100101
+101001
+1100N1
+111111
