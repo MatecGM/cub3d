@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 01:09:39 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/18 21:59:27 by gadelbes         ###   ########.fr       */
+/*   Updated: 2024/12/18 23:55:51 by gadelbes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,5 @@ int	find_map(char **map, int x, int y)
 			count++;
 		y++;
 	}
-
 	return (0);
 }
