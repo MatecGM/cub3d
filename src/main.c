@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:57:51 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 23:24:35 by gadelbes         ###   ########.fr       */
+/*   Updated: 2025/01/02 13:44:04 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,18 @@ int	main(int argc, char **argv)
 {
 	t_data	data[1];
 	t_parse	psg[1];
+	char	*arg;
 
 	psg[0] = (t_parse){0};
-	__attribute__((cleanup(free_arg))) char *arg;
 	arg = NULL;
 	if (argc == 2)
 		arg = ft_strdup(argv[1]);
+	data->path = arg;
 	if (!arg || argc != 2 || parsing(arg, psg))
 	{
 		ft_freetab_occ((void **)psg->ress, 7);
 		ft_putstr_fd("Parsing init failed\n", 2);
+		free(arg);
 		return (TRUE);
 	}
 	if (init_data(data, psg))

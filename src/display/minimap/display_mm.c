@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:19:58 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 18:23:11 by mbico            ###   ########.fr       */
+/*   Updated: 2025/01/02 14:35:20 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,5 @@ void	display_mm(t_data *data)
 	if (data->hud.rotate_mm)
 		frame = rotate_mm(frame, data->player.dir);
 	display_mm_on_screen(data, frame);
+	ft_freetab((void **)frame, INT_MAX);
 }

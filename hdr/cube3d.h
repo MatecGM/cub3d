@@ -6,7 +6,7 @@
 /*   By: gadelbes <gadelbes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 21:39:50 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/18 18:18:50 by mbico            ###   ########.fr       */
+/*   Updated: 2025/01/02 13:37:33 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct s_data
 	t_player	player;
 	int32_t		**screen;
 	t_map		map;
+	char		*path;
 }				t_data;
 
 void			displaying(t_data *data);
