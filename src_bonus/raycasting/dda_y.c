@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 06:34:10 by mbico             #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:40 by mbico            ###   ########.fr       */
+/*   Updated: 2025/01/02 14:59:16 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_coord	dda_y(t_data *data, double dir)
 	rc = dda_y_init(data->player.pos, dir);
 	while (rc.rd < RENDER_DISTANCE)
 	{
-		if (rc.ray.x < data->map.size.x && rc.ray.x >= 0
+		if (rc.ray.x - (rc.side_dist.x < 0) < data->map.size.x && rc.ray.x - (rc.side_dist.x < 0) >= 0
 			&& rc.ray.y < data->map.size.y && rc.ray.y > 0
 			&& (data->psg->map[(int)rc.ray.y][(int)rc.ray.x
 				- (rc.side_dist.x < 0)]))
