@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:25:13 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/18 20:42:52 by mbico            ###   ########.fr       */
+/*   Updated: 2025/01/02 14:50:26 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ t_argb	texture_rel_color(t_data *data, t_wh wh, t_dcoord ptr)
 	t_wall		target;
 
 	color.argb = 0xFF000000;
+	if (wh.rpos.x < 0 || wh.rpos.x >= data->map.size.x || wh.rpos.y < 0
+		|| wh.rpos.y >= data->map.size.y)
+		wh.rpos = (t_dcoord){0, 0};
 	target = data->map.content[wh.rpos.y][wh.rpos.x];
 	if (target == DOOR_CLS)
 		color = mono_text_rel_color(data, wh, ptr, data->map.txt[4]);

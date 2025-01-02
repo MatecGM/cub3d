@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 13:25:55 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/15 17:15:35 by mbico            ###   ########.fr       */
+/*   Updated: 2025/01/02 14:55:08 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	verif_cub(char *str)
 {
 	if (ft_strlen(str) <= 4)
 		return (printf("Error\n.cub\n"));
-	if (ft_strcmp(ft_strrchr(str, '.'), ".cub") != 0)
+	if (ft_strcmp(str + ft_strlen(str) - 4, ".cub") != 0)
 		return (printf("Error\n.cub\n"));
 	return (0);
 }

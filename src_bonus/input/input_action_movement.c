@@ -6,7 +6,7 @@
 /*   By: mbico <mbico@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:16:47 by gadelbes          #+#    #+#             */
-/*   Updated: 2024/12/15 18:44:39 by mbico            ###   ########.fr       */
+/*   Updated: 2025/01/02 14:49:41 by mbico            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ t_coord	get_move_add(t_data *data, t_verif face, int c)
 		pos.x += (data->rc.ax / 50.0) * (double)sign * (double)c;
 		pos.y += (data->rc.ay / 50.0) * (double)sign * (double)c;
 	}
+	if (pos.x < 0 || pos.x >= data->map.size.x || pos.x < 0
+		|| pos.y >= data->map.size.y)
+		pos = data->player.pos;
 	return (pos);
 }
 
